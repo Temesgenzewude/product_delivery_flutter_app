@@ -4,6 +4,7 @@ class AppDimensions {
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
+
   static double pageView = screenHeight / (screenHeight / 320);
 
   static double pageViewContainer = screenHeight / (screenHeight / 220);

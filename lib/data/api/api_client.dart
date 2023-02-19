@@ -1,4 +1,4 @@
-import 'package:food_delivery/utils/constants.dart';
+import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {

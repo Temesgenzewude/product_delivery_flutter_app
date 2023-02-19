@@ -5,7 +5,7 @@ import 'package:food_delivery/data/api/api_client.dart';
 import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/data/repository/popular_products_repo.dart';
 import 'package:food_delivery/data/repository/recommended_product_repo.dart';
-import 'package:food_delivery/utils/constants.dart';
+import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 
 Future<void> init() async { 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/presentation/home/product_page_body.dart';
 import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/constants.dart';
+import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
@@ -16,9 +16,15 @@ class MainProductPage extends StatefulWidget {
 class _MainProductPageState extends State<MainProductPage> {
   @override
   Widget build(BuildContext context) {
+    print(
+      AppDimensions.screenWidth,
+    );
+    print(AppDimensions.screenHeight);
     return Scaffold(
         body: Column(
       children: [
+        //header
+
         Container(
           child: Container(
             margin: EdgeInsets.only(
@@ -46,7 +52,11 @@ class _MainProductPageState extends State<MainProductPage> {
                   child: Container(
                     width: AppDimensions.height45,
                     height: AppDimensions.height45,
-                    child: Icon(Icons.search, color: Colors.white),
+                    child: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                      size: AppDimensions.iconSize24,
+                    ),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
                           AppDimensions.radius15,
@@ -58,7 +68,8 @@ class _MainProductPageState extends State<MainProductPage> {
             ),
           ),
         ),
-        ProductPageBody(),  
+        //body
+        ProductPageBody(),
       ],
     ));
   }
