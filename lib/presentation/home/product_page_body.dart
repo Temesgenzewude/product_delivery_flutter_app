@@ -39,6 +39,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider
         Container(
           height: AppDimensions.pageView,
           child: PageView.builder(
@@ -58,7 +59,130 @@ class _ProductPageBodyState extends State<ProductPageBody> {
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
           ),
-        )
+        ),
+
+        //popular text
+        SizedBox(
+          height: AppDimensions.height30,
+        ),
+        Container(
+          margin: EdgeInsets.only(left: AppDimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(
+                width: AppDimensions.width10,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 3),
+                child: BigText(
+                  text: ".",
+                  color: Colors.black26,
+                ),
+              ),
+              SizedBox(
+                width: AppDimensions.width10,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: SmallText(text: "Product Pairing"),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppDimensions.height20,
+        ),
+        //List of product and images
+        ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(
+                  left: AppDimensions.width20,
+                  right: AppDimensions.width20,
+                  bottom: AppDimensions.height10,
+                ),
+                child: Row(
+                  children: [
+                    //show product image
+
+                    Container(
+                      height: AppDimensions.listViewImgWidthSize120,
+                      width: AppDimensions.listViewImgWidthSize120,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          AppDimensions.radius20,
+                        ),
+                        color: Colors.white38,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/images/img3.jpg"),
+                        ),
+                      ),
+                    ),
+
+                    //show product name text
+                    Expanded(
+                      child: Container(
+                        height: AppDimensions.listViewTextContHeightSize100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(AppDimensions.radius20),
+                            bottomRight:
+                                Radius.circular(AppDimensions.radius20),
+                          ),
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: AppDimensions.width10,
+                              right: AppDimensions.width10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BigText(text: "Brand Fashions"),
+                              SizedBox(
+                                height: AppDimensions.height10,
+                              ),
+                              SmallText(text: "With Ethiopian Characteristics"),
+                              SizedBox(
+                                height: AppDimensions.height10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconAndText(
+                                    icon: Icons.circle_sharp,
+                                    text: "Normal",
+                                    iconColor: AppColors.iconColor1,
+                                  ),
+                                  IconAndText(
+                                    icon: Icons.location_on,
+                                    text: "1.8km",
+                                    iconColor: AppColors.mainColor,
+                                  ),
+                                  IconAndText(
+                                    icon: Icons.access_time_rounded,
+                                    text: "32min",
+                                    iconColor: AppColors.iconColor2,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            })
       ],
     );
   }

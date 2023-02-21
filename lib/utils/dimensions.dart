@@ -4,7 +4,6 @@ class AppDimensions {
   static double screenHeight = Get.context!.height;
   static double screenWidth = Get.context!.width;
 
-
   static double pageView = screenHeight / (screenHeight / 320);
 
   static double pageViewContainer = screenHeight / (screenHeight / 220);
@@ -51,8 +50,10 @@ class AppDimensions {
   static double iconSize24 = screenHeight / (screenHeight / 24);
 
   //list view size
-  static double listViewImgSize = screenHeight / (screenHeight / 260);
-  static double listViewTextContSize = screenHeight / (screenHeight / 216);
+  static double listViewImgWidthSize120 = screenWidth / (screenWidth / 120);
+
+  static double listViewTextContHeightSize100 =
+      screenWidth / (screenWidth / 100);
 
   //popular product
   static double popularProductImgSize = screenHeight / (screenHeight / 350);
