@@ -47,7 +47,10 @@ class AppDimensions {
   //dynamic height padding and margin
   static double iconSize10 = screenHeight / (screenHeight / 10);
   static double iconSize16 = screenHeight / (screenHeight / 16);
+  static double iconSize20 = screenHeight / (screenHeight / 20);
+
   static double iconSize24 = screenHeight / (screenHeight / 24);
+  static double iconSize30 = screenHeight / (screenHeight / 30);
 
   //list view size
   static double listViewImgWidthSize120 = screenWidth / (screenWidth / 120);
@@ -56,7 +59,7 @@ class AppDimensions {
       screenWidth / (screenWidth / 100);
 
   //popular product
-  static double popularProductImgSize = screenHeight / (screenHeight / 350);
+  static double popularProductImgSize350 = screenHeight / (screenHeight / 350);
 
   //bottom height
   static double bottomHeightBar = screenHeight / (screenHeight / 120);
