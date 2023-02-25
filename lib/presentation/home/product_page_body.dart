@@ -1,5 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -7,6 +10,7 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/custome_app_column.dart';
 import 'package:food_delivery/widgets/icon_and_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import 'package:get/get.dart';
 
 class ProductPageBody extends StatefulWidget {
   const ProductPageBody({super.key});
@@ -41,26 +45,37 @@ class _ProductPageBodyState extends State<ProductPageBody> {
     return Column(
       children: [
         //slider
-        Container(
-          height: AppDimensions.pageView,
-          child: PageView.builder(
-              controller: pageController,
-              itemCount: 5,
-              itemBuilder: (context, position) {
-                return _buildPageItem(position);
-              }),
-        ),
-        new DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-          ),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return popularProducts.isLoaded
+              ? Container(
+                  height: AppDimensions.pageView,
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProducts.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPageItem(position,
+                            popularProducts.popularProductList[position]);
+                      }),
+                )
+              : CircularProgressIndicator(
+                  color: AppColors.mainColor,
+                );
+        }),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.isEmpty
+                ? 1
+                : popularProducts.popularProductList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+            ),
+          );
+        }),
 
         //popular text
         SizedBox(
@@ -71,7 +86,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Popular"),
+              BigText(text: "Recommended"),
               SizedBox(
                 width: AppDimensions.width10,
               ),
@@ -95,100 +110,116 @@ class _ProductPageBodyState extends State<ProductPageBody> {
         SizedBox(
           height: AppDimensions.height20,
         ),
-        //List of product and images
-        ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.only(
-                  left: AppDimensions.width20,
-                  right: AppDimensions.width20,
-                  bottom: AppDimensions.height10,
-                ),
-                child: Row(
-                  children: [
-                    //show product image
-
-                    Container(
-                      height: AppDimensions.listViewImgWidthSize120,
-                      width: AppDimensions.listViewImgWidthSize120,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.radius20,
-                        ),
-                        color: Colors.white38,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/img3.jpg"),
-                        ),
+        GetBuilder<RecommendedProductController>(
+            builder: (recommendedProducts) {
+          return recommendedProducts.isLoaded
+              ?
+              //List of product and images
+              ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: recommendedProducts.recommendedProductList.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(
+                        left: AppDimensions.width20,
+                        right: AppDimensions.width20,
+                        bottom: AppDimensions.height10,
                       ),
-                    ),
+                      child: Row(
+                        children: [
+                          //show product image
 
-                    //show product name text
-                    Expanded(
-                      child: Container(
-                        height: AppDimensions.listViewTextContHeightSize100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(AppDimensions.radius20),
-                            bottomRight:
-                                Radius.circular(AppDimensions.radius20),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: AppDimensions.width10,
-                              right: AppDimensions.width10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              BigText(text: "Brand Fashions"),
-                              SizedBox(
-                                height: AppDimensions.height10,
+                          Container(
+                            height: AppDimensions.listViewImgWidthSize120,
+                            width: AppDimensions.listViewImgWidthSize120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                AppDimensions.radius20,
                               ),
-                              SmallText(text: "With Ethiopian Characteristics"),
-                              SizedBox(
-                                height: AppDimensions.height10,
+                              color: Colors.white38,
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage("assets/images/img3.jpg"),
+                                // image: NetworkImage(AppConstants.BASE_URL +
+                                //     AppConstants.UPLOAD_URL +
+                                //     recommendedProducts
+                                //         .recommendedProductList[index].img!),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconAndText(
-                                    icon: Icons.circle_sharp,
-                                    text: "Normal",
-                                    iconColor: AppColors.iconColor1,
-                                  ),
-                                  IconAndText(
-                                    icon: Icons.location_on,
-                                    text: "1.8km",
-                                    iconColor: AppColors.mainColor,
-                                  ),
-                                  IconAndText(
-                                    icon: Icons.access_time_rounded,
-                                    text: "32min",
-                                    iconColor: AppColors.iconColor2,
-                                  ),
-                                ],
-                              )
-                            ],
+                            ),
                           ),
-                        ),
+
+                          //show product name text
+                          Expanded(
+                            child: Container(
+                              height:
+                                  AppDimensions.listViewTextContHeightSize100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topRight:
+                                      Radius.circular(AppDimensions.radius20),
+                                  bottomRight:
+                                      Radius.circular(AppDimensions.radius20),
+                                ),
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: AppDimensions.width10,
+                                    right: AppDimensions.width10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    BigText(text: recommendedProducts.recommendedProductList[index].name!),
+
+                                    SizedBox(
+                                      height: AppDimensions.height10,
+                                    ),
+                                    SmallText(
+                                        text: "With Ethiopian Characteristics"),
+                                    SizedBox(
+                                      height: AppDimensions.height10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        IconAndText(
+                                          icon: Icons.circle_sharp,
+                                          text: "Normal",
+                                          iconColor: AppColors.iconColor1,
+                                        ),
+                                        IconAndText(
+                                          icon: Icons.location_on,
+                                          text: "1.8km",
+                                          iconColor: AppColors.mainColor,
+                                        ),
+                                        IconAndText(
+                                          icon: Icons.access_time_rounded,
+                                          text: "32min",
+                                          iconColor: AppColors.iconColor2,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              );
-            })
+                    );
+                  })
+              : CircularProgressIndicator(
+                  color: AppColors.mainColor,
+                );
+        })
       ],
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
@@ -234,6 +265,9 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                 image: AssetImage(
                   "assets/images/img6.jpg",
                 ),
+                //  image: NetworkImage(
+                //  AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!
+                // ),
               ),
             ),
           ),
@@ -269,7 +303,9 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                   left: AppDimensions.width15,
                   right: AppDimensions.width15,
                 ),
-                child: CustomAppColumn(text: "Ethiopians Sides",),
+                child: CustomAppColumn(
+                  text: popularProduct.name!,
+                ),
               ),
             ),
           ),

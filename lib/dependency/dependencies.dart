@@ -8,7 +8,8 @@ import 'package:food_delivery/data/repository/recommended_product_repo.dart';
 import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 
-Future<void> init() async { 
+Future<void> init() async {
+  
   //api client
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
@@ -18,9 +19,9 @@ Future<void> init() async {
   Get.lazyPut(() => CartRepo());
 
   //controllers
-
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(
       () => RecommendedProductController(recommendedProductRepo: Get.find()));
   Get.lazyPut(() => CartController(cartRepo: Get.find()));
 }
+

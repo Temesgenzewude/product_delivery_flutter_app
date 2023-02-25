@@ -28,16 +28,21 @@ class PopularProductController extends GetxController {
   int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList() async {
+    
+
     Response response = await popularProductRepo.getPopularProductList();
 
     if (response.statusCode == 200) {
+      print("Successfully loaded products");
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
-
       _isLoaded = true;
 
       update();
-    } else {}
+    } else {
+      print("Error loading products");
+
+    }
   }
 
   void setQuantity(bool isIncrement) {

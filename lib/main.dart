@@ -5,11 +5,12 @@ import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:get/get.dart';
 
-import "./helper//dependencies.dart" as dep;
+import 'dependency/dependencies.dart' as dependency;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await dep.init();
+  // initialize the dependencies
+  await dependency.init();
   runApp(const MyApp());
 }
 
@@ -17,14 +18,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Get.find<PopularProductController>().getPopularProductList();
-
-    // Get.find<RecommendedProductController>().getRecommendedProductList();
+  Widget build(BuildContext context) { 
+    //load the products
+    Get.find<PopularProductController>().getPopularProductList();    
+    Get.find<RecommendedProductController>().getRecommendedProductList();
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Food Delivery App',
+      title: 'Product Delivery App',
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
     );
