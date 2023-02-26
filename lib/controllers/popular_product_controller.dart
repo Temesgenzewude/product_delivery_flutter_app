@@ -28,8 +28,6 @@ class PopularProductController extends GetxController {
   int get inCartItems => _inCartItems + _quantity;
 
   Future<void> getPopularProductList() async {
-    
-
     Response response = await popularProductRepo.getPopularProductList();
 
     if (response.statusCode == 200) {
@@ -41,7 +39,6 @@ class PopularProductController extends GetxController {
       update();
     } else {
       print("Error loading products");
-
     }
   }
 
@@ -82,9 +79,6 @@ class PopularProductController extends GetxController {
     var exists = false;
     exists = _cartController.existInCart(productModel);
 
-    //if exist
-    //get from storage _inCartItems=3
-
     if (exists) {
       _inCartItems = _cartController.getQuantity(productModel);
     }
@@ -93,22 +87,18 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    if (_quantity > 0) {
-      _cartController.addItem(product, _quantity);
-      _quantity = 0;
-      _inCartItems = _cartController.getQuantity(product);
+    _cartController.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cartController.getQuantity(product);
 
-      _cartController.cartItems.forEach((key, value) {
-        print(" The id is " +
-            value.id.toString() +
-            "The quantity is " +
-            value.quantity.toString());
-      });
-    } else {
-      Get.snackbar(
-          "Item Count", "You should add at least one item in the cart !",
-          backgroundColor: Color(0xFF262626), colorText: Colors.white);
-    }
+    _cartController.cartItems.forEach((key, value) {
+      print(" The id is " +
+          value.id.toString() +
+          "The quantity is " +
+          value.quantity.toString());
+    });
+
+    print("The length of the cart is ${_cartController.cartItems.length} ");
     update();
   }
 

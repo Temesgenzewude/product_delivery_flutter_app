@@ -10,54 +10,64 @@ import 'package:get/get.dart';
 class RouteHelper {
   static const String initial = "/";
 
-  static const String popularProduct = "/popular-product";
-  static const String recommendedProduct = "/recommended-product";
+  static const String popularProductDetail = "/popular-product-detail";
+
+  static const String recommendedProductDetail = "/recommended-product-detail";
   static const String signup = "/signup";
   static const String cartPage = '/cart-page';
   static const String profilePage = '/profile';
 
   static getInitial() => '$initial';
 
-  static String getRecommendedProduct(int pageId) =>
-      '$recommendedProduct?pageId=$pageId';
+  static String getRecommendedProductDetail(int pageId) =>
+      '$recommendedProductDetail?pageId=$pageId';
+      
 
-  static String getPopularProduct(int pageId) =>
-      '$popularProduct?pageId=$pageId ';
+  static String getPopularProductDetail(int pageId) =>
+      '$popularProductDetail?pageId=$pageId ';
 
   static String getSignup() => '$signup';
   static String getCartPage() => '$cartPage';
   static String getProfilePage() => '$profilePage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainProductPage()),
     GetPage(
-        name: popularProduct,
+        name: initial,
+        page: () => MainProductPage(),
+        transition: Transition.fadeIn),
+    GetPage(
+        name: popularProductDetail,
         page: () {
           var pageId = Get.parameters['pageId'];
           return PopularProductDetail(
             pageId: int.parse(pageId!),
           );
-        }),
+        },
+        transition: Transition.fadeIn),
     GetPage(
-        name: recommendedProduct,
+        name: recommendedProductDetail,
         page: () {
           var pageId = Get.parameters['pageId'];
           return RecommendedProductDetail(pageId: int.parse(pageId!));
-        }),
+        },
+        transition: Transition.fadeIn),
     GetPage(
         name: signup,
         page: () {
           return SignUpPage();
-        }),
+        },
+        transition: Transition.fadeIn),
     GetPage(
         name: cartPage,
         page: () {
           return CartDetail();
-        }),
+        },
+        transition: Transition.fadeIn),
     GetPage(
         name: profilePage,
         page: () {
           return AccountPage();
-        }),
+        },
+        transition: Transition.fadeIn),
   ];
 }

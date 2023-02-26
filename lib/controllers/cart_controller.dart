@@ -16,6 +16,7 @@ class CartController extends GetxController {
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id)) {
+      print("Exists and updating");
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
@@ -23,17 +24,19 @@ class CartController extends GetxController {
             name: value.name,
             price: value.price,
             img: value.img,
-            quantity: value.quantity! + quantity,
+            quantity: totalQuantity,
             isExist: true,
             product: product,
             time: DateTime.now().toString());
       });
 
       if (totalQuantity <= 0) {
+        print("Exists and removing ");
         _items.remove(product.id);
       }
     } else {
       if (quantity > 0) {
+        print("Absent and adding");
         _items.putIfAbsent(
             product.id!,
             () => CartModel(
@@ -65,6 +68,7 @@ class CartController extends GetxController {
   int getQuantity(ProductModel productModel) {
     var quantity = 0;
     if (_items.containsKey(productModel.id)) {
+      // to be optimized later
       _items.forEach((key, value) {
         if (key == productModel.id) {
           quantity = value.quantity!;

@@ -16,12 +16,9 @@ class MainProductPage extends StatefulWidget {
 class _MainProductPageState extends State<MainProductPage> {
   @override
   Widget build(BuildContext context) {
-    print(
-      AppDimensions.screenWidth,
-    );
-    print(AppDimensions.screenHeight);
     return Scaffold(
         body: Column(
+          
       children: [
         //header
 

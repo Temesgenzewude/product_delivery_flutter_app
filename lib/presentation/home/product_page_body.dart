@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/models/products_model.dart';
+import 'package:food_delivery/presentation/product/popular_product_detail.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -120,94 +122,104 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                   shrinkWrap: true,
                   itemCount: recommendedProducts.recommendedProductList.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                        left: AppDimensions.width20,
-                        right: AppDimensions.width20,
-                        bottom: AppDimensions.height10,
-                      ),
-                      child: Row(
-                        children: [
-                          //show product image
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(
+                            RouteHelper.getRecommendedProductDetail(index));
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: AppDimensions.width20,
+                          right: AppDimensions.width20,
+                          bottom: AppDimensions.height10,
+                        ),
+                        child: Row(
+                          children: [
+                            //show product image
 
-                          Container(
-                            height: AppDimensions.listViewImgWidthSize120,
-                            width: AppDimensions.listViewImgWidthSize120,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                AppDimensions.radius20,
-                              ),
-                              color: Colors.white38,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/images/img3.jpg"),
-                                // image: NetworkImage(AppConstants.BASE_URL +
-                                //     AppConstants.UPLOAD_URL +
-                                //     recommendedProducts
-                                //         .recommendedProductList[index].img!),
-                              ),
-                            ),
-                          ),
-
-                          //show product name text
-                          Expanded(
-                            child: Container(
-                              height:
-                                  AppDimensions.listViewTextContHeightSize100,
+                            Container(
+                              height: AppDimensions.listViewImgWidthSize120,
+                              width: AppDimensions.listViewImgWidthSize120,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight:
-                                      Radius.circular(AppDimensions.radius20),
-                                  bottomRight:
-                                      Radius.circular(AppDimensions.radius20),
+                                borderRadius: BorderRadius.circular(
+                                  AppDimensions.radius20,
                                 ),
-                                color: Colors.white,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: AppDimensions.width10,
-                                    right: AppDimensions.width10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    BigText(text: recommendedProducts.recommendedProductList[index].name!),
-
-                                    SizedBox(
-                                      height: AppDimensions.height10,
-                                    ),
-                                    SmallText(
-                                        text: "With Ethiopian Characteristics"),
-                                    SizedBox(
-                                      height: AppDimensions.height10,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        IconAndText(
-                                          icon: Icons.circle_sharp,
-                                          text: "Normal",
-                                          iconColor: AppColors.iconColor1,
-                                        ),
-                                        IconAndText(
-                                          icon: Icons.location_on,
-                                          text: "1.8km",
-                                          iconColor: AppColors.mainColor,
-                                        ),
-                                        IconAndText(
-                                          icon: Icons.access_time_rounded,
-                                          text: "32min",
-                                          iconColor: AppColors.iconColor2,
-                                        ),
-                                      ],
-                                    )
-                                  ],
+                                color: Colors.white38,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage("assets/images/img3.jpg"),
+                                  // image: NetworkImage(AppConstants.BASE_URL +
+                                  //     AppConstants.UPLOAD_URL +
+                                  //     recommendedProducts
+                                  //         .recommendedProductList[index].img!),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+
+                            //show product name text
+                            Expanded(
+                              child: Container(
+                                height:
+                                    AppDimensions.listViewTextContHeightSize100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight:
+                                        Radius.circular(AppDimensions.radius20),
+                                    bottomRight:
+                                        Radius.circular(AppDimensions.radius20),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: AppDimensions.width10,
+                                      right: AppDimensions.width10),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      BigText(
+                                          text: recommendedProducts
+                                              .recommendedProductList[index]
+                                              .name!),
+                                      SizedBox(
+                                        height: AppDimensions.height10,
+                                      ),
+                                      SmallText(
+                                          text:
+                                              "With Ethiopian Characteristics"),
+                                      SizedBox(
+                                        height: AppDimensions.height10,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          IconAndText(
+                                            icon: Icons.circle_sharp,
+                                            text: "Normal",
+                                            iconColor: AppColors.iconColor1,
+                                          ),
+                                          IconAndText(
+                                            icon: Icons.location_on,
+                                            text: "1.8km",
+                                            iconColor: AppColors.mainColor,
+                                          ),
+                                          IconAndText(
+                                            icon: Icons.access_time_rounded,
+                                            text: "32min",
+                                            iconColor: AppColors.iconColor2,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   })
@@ -253,21 +265,26 @@ class _ProductPageBodyState extends State<ProductPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: AppDimensions.pageViewContainer,
-            margin: EdgeInsets.only(
-                left: AppDimensions.width10, right: AppDimensions.width10),
-            decoration: BoxDecoration(
-              color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
-              borderRadius: BorderRadius.circular(AppDimensions.radius30),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  "assets/images/img6.jpg",
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(RouteHelper.getPopularProductDetail(index));
+            },
+            child: Container(
+              height: AppDimensions.pageViewContainer,
+              margin: EdgeInsets.only(
+                  left: AppDimensions.width10, right: AppDimensions.width10),
+              decoration: BoxDecoration(
+                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+                borderRadius: BorderRadius.circular(AppDimensions.radius30),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    "assets/images/img6.jpg",
+                  ),
+                  //  image: NetworkImage(
+                  //  AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!
+                  // ),
                 ),
-                //  image: NetworkImage(
-                //  AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!
-                // ),
               ),
             ),
           ),

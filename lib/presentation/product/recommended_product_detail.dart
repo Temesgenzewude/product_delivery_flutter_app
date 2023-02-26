@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
@@ -16,8 +17,8 @@ class RecommendedProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var product =
-    //     Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
 
     // Get.find<PopularProductController>()
     //     .initProduct(product, Get.find<CartController>());
@@ -27,11 +28,16 @@ class RecommendedProductDetail extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: AppDimensions.height10 * 8,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.clear),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(icon: Icons.clear)),
                 AppIcon(icon: Icons.shopping_cart_sharp),
               ],
             ),
@@ -47,7 +53,7 @@ class RecommendedProductDetail extends StatelessWidget {
                 width: double.maxFinite,
                 child: Center(
                   child: BigText(
-                    text: "Silver App Bar",
+                    text: product.name,
                     size: AppDimensions.font26,
                   ),
                 ),
@@ -75,8 +81,8 @@ class RecommendedProductDetail extends StatelessWidget {
                       left: AppDimensions.width20,
                       right: AppDimensions.width20),
                   child: ExpandableTextWidget(
-                      text:
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer vitae justo eget magna. Pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. In hendrerit gravida rutrum quisque non tellus orci ac auctor. Eu mi bibendum neque egestas congue. Id ornare arcu odio ut sem nulla pharetra. Sit amet aliquam id diam maecenas ultricies. Dolor sit amet consectetur adipiscing. Id diam vel quam elementum pulvinar etiam. Nunc vel risus commodo viverra maecenas accumsan. Purus semper eget duis at. Consectetur lorem donec massa sapien faucibus et molestie ac. Amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non. Iaculis eu non diam phasellus vestibulum. Enim tortor at auctor urna nunc id cursus metus aliquam. Mauris commodo quis imperdiet massa."),
+                    text: product.description,
+                  ),
                 ),
               ],
             ),
@@ -100,7 +106,7 @@ class RecommendedProductDetail extends StatelessWidget {
                 iconSize: AppDimensions.iconSize24,
               ),
               BigText(
-                text: "\$12.88  " + " X  " + " 0 ",
+                text: "\$ ${product.price!}   X   0 ",
                 color: AppColors.mainBlackColor,
                 size: AppDimensions.font26,
               ),
@@ -154,7 +160,9 @@ class RecommendedProductDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppDimensions.radius20),
                 color: AppColors.mainColor,
               ),
-              child: BigText(text: "\$10 | Add to cart", color: Colors.white),
+              child: BigText(
+                  text: "\$ ${product.price!} | Add to cart",
+                  color: Colors.white),
             ),
           ]),
         ),
