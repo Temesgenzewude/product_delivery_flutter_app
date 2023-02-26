@@ -3,6 +3,7 @@ import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/presentation/home/main_product_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
@@ -52,7 +53,37 @@ class PopularProductDetail extends StatelessWidget {
                           Get.toNamed(RouteHelper.initial);
                         },
                         child: AppIcon(icon: Icons.arrow_back_ios)),
-                    AppIcon(icon: Icons.shopping_cart_outlined),
+                    GetBuilder<PopularProductController>(
+                        builder: (popularProduct) {
+                      return Stack(
+                        children: [
+                          AppIcon(icon: Icons.shopping_cart_outlined),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 0,
+                                  top: 0,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    size: AppDimensions.height20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ))
+                              : Container(),
+                          Get.find<PopularProductController>().totalItems >= 1
+                              ? Positioned(
+                                  right: 3,
+                                  top: 3,
+                                  child: BigText(
+                                    text: Get.find<PopularProductController>()
+                                        .totalItems
+                                        .toString(),
+                                    size: AppDimensions.font16 - 4,
+                                    color: Colors.white,
+                                  ))
+                              : Container()
+                        ],
+                      );
+                    })
                   ],
                 )),
             Positioned(
