@@ -60,11 +60,16 @@ class PopularProductDetail extends StatelessWidget {
                               ? Positioned(
                                   right: 0,
                                   top: 0,
-                                  child: AppIcon(
-                                    icon: Icons.circle,
-                                    size: AppDimensions.height20,
-                                    iconColor: Colors.transparent,
-                                    backgroundColor: AppColors.mainColor,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(RouteHelper.getCartPage());
+                                    },
+                                    child: AppIcon(
+                                      icon: Icons.circle,
+                                      size: AppDimensions.height20,
+                                      iconColor: Colors.transparent,
+                                      backgroundColor: AppColors.mainColor,
+                                    ),
                                   ))
                               : Container(),
                           Get.find<PopularProductController>().totalItems >= 1

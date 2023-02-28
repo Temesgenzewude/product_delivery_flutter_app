@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/dimensions.dart';
 import 'package:get/get.dart';
 
 import 'dependency/dependencies.dart' as dependency;
@@ -18,9 +17,9 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     //load the products
-    Get.find<PopularProductController>().getPopularProductList();    
+    Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecommendedProductController>().getRecommendedProductList();
 
     return GetMaterialApp(

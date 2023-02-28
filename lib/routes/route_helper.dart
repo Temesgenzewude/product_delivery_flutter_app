@@ -60,7 +60,8 @@ class RouteHelper {
     GetPage(
         name: cartPage,
         page: () {
-          return CartDetail();
+          return CartDetailPage();
+
         },
         transition: Transition.fadeIn),
     GetPage(

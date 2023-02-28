@@ -39,37 +39,41 @@ class RecommendedProductDetail extends StatelessWidget {
                     },
                     child: AppIcon(icon: Icons.clear)),
                 // AppIcon(icon: Icons.shopping_cart_sharp),
-                   GetBuilder<PopularProductController>(
-                        builder: (popularProduct) {
-                      return Stack(
-                        children: [
-                          AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: AppIcon(
-                                    icon: Icons.circle,
-                                    size: AppDimensions.height20,
-                                    iconColor: Colors.transparent,
-                                    backgroundColor: AppColors.mainColor,
-                                  ))
-                              : Container(),
-                          Get.find<PopularProductController>().totalItems >= 1
-                              ? Positioned(
-                                  right: 3,
-                                  top: 3,
-                                  child: BigText(
-                                    text: Get.find<PopularProductController>()
-                                        .totalItems
-                                        .toString(),
-                                    size: AppDimensions.font16 - 4,
-                                    color: Colors.white,
-                                  ))
-                              : Container()
-                        ],
-                      );
-                    })
+                GetBuilder<PopularProductController>(builder: (popularProduct) {
+                  return Stack(
+                    children: [
+                      AppIcon(icon: Icons.shopping_cart_outlined),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              right: 0,
+                              top: 0,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.toNamed(RouteHelper.getCartPage());
+                                },
+                                child: AppIcon(
+                                  icon: Icons.circle,
+                                  size: AppDimensions.height20,
+                                  iconColor: Colors.transparent,
+                                  backgroundColor: AppColors.mainColor,
+                                ),
+                              ))
+                          : Container(),
+                      Get.find<PopularProductController>().totalItems >= 1
+                          ? Positioned(
+                              right: 3,
+                              top: 3,
+                              child: BigText(
+                                text: Get.find<PopularProductController>()
+                                    .totalItems
+                                    .toString(),
+                                size: AppDimensions.font16 - 4,
+                                color: Colors.white,
+                              ))
+                          : Container()
+                    ],
+                  );
+                })
               ],
             ),
             bottom: PreferredSize(
