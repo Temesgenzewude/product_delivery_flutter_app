@@ -41,6 +41,7 @@ class CartModel {
     data['quantity'] = quantity;
     data['time'] = time;
     data['isExist'] = isExist;
+    data['product'] = product != null ? product!.toJson() : null;
 
     return data;
   }

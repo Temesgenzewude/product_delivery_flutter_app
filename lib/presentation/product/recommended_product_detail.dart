@@ -12,8 +12,10 @@ import 'package:get/get.dart';
 
 class RecommendedProductDetail extends StatelessWidget {
   final int pageId;
+  final String pageName;
 
-  const RecommendedProductDetail({super.key, required this.pageId});
+  const RecommendedProductDetail(
+      {super.key, required this.pageId, required this.pageName});
 
   @override
   Widget build(BuildContext context) {
@@ -35,43 +37,51 @@ class RecommendedProductDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                     onTap: () {
-                      Get.toNamed(RouteHelper.getInitial());
+                      if (pageName.trim() == "cart") {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      } else if (pageName.trim() == "home") {
+                        Get.toNamed(RouteHelper.getInitial());
+                      }
+
+                    
                     },
                     child: AppIcon(icon: Icons.clear)),
                 // AppIcon(icon: Icons.shopping_cart_sharp),
                 GetBuilder<PopularProductController>(builder: (popularProduct) {
-                  return Stack(
-                    children: [
-                      AppIcon(icon: Icons.shopping_cart_outlined),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              right: 0,
-                              top: 0,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(RouteHelper.getCartPage());
-                                },
+                  return GestureDetector(
+                    onTap: () {
+                      if (popularProduct.totalItems >= 1) {
+                        Get.toNamed(RouteHelper.getCartPage());
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        AppIcon(icon: Icons.shopping_cart_outlined),
+                        popularProduct.totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
                                 child: AppIcon(
                                   icon: Icons.circle,
                                   size: AppDimensions.height20,
                                   iconColor: Colors.transparent,
                                   backgroundColor: AppColors.mainColor,
-                                ),
-                              ))
-                          : Container(),
-                      Get.find<PopularProductController>().totalItems >= 1
-                          ? Positioned(
-                              right: 3,
-                              top: 3,
-                              child: BigText(
-                                text: Get.find<PopularProductController>()
-                                    .totalItems
-                                    .toString(),
-                                size: AppDimensions.font16 - 4,
-                                color: Colors.white,
-                              ))
-                          : Container()
-                    ],
+                                ))
+                            : Container(),
+                        popularProduct.totalItems >= 1
+                            ? Positioned(
+                                right: 3,
+                                top: 3,
+                                child: BigText(
+                                  text: Get.find<PopularProductController>()
+                                      .totalItems
+                                      .toString(),
+                                  size: AppDimensions.font16 - 4,
+                                  color: Colors.white,
+                                ))
+                            : Container()
+                      ],
+                    ),
                   );
                 })
               ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -7,6 +8,8 @@ import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/recommended_product_controller.dart';
 
 class CartDetailPage extends StatelessWidget {
   const CartDetailPage({super.key});
@@ -62,8 +65,9 @@ class CartDetailPage extends StatelessWidget {
               context: context,
               removeTop: true,
               child: GetBuilder<CartController>(builder: (cartController) {
+                var _cartList = cartController.getItems;
                 return ListView.builder(
-                    itemCount: cartController.getItems.length,
+                    itemCount: _cartList.length,
                     itemBuilder: ((context, index) {
                       return Container(
                         // color: Colors.red,
@@ -71,7 +75,25 @@ class CartDetailPage extends StatelessWidget {
                         width: double.maxFinite,
                         child: Row(children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              var popularProductIndex =
+                                  Get.find<PopularProductController>()
+                                      .popularProductList
+                                      .indexOf(_cartList[index].product!);
+
+                              if (popularProductIndex >= 0) {
+                                Get.toNamed(RouteHelper.getPopularProductDetail(
+                                    popularProductIndex, "cart"));
+                              } else {
+                                var recommendedProductIndex =
+                                    Get.find<RecommendedProductController>()
+                                        .recommendedProductList
+                                        .indexOf(_cartList[index].product!);
+                                Get.toNamed(
+                                    RouteHelper.getRecommendedProductDetail(
+                                        recommendedProductIndex, "cart"));
+                              }
+                            },
                             child: Container(
                               margin: EdgeInsets.only(
                                   bottom: AppDimensions.height10),
@@ -100,7 +122,7 @@ class CartDetailPage extends StatelessWidget {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   BigText(
-                                    text: cartController.getItems[index].name!,
+                                    text: _cartList[index].name!,
                                     color: Colors.black54,
                                   ),
                                   SmallText(text: "Spicy"),
@@ -109,9 +131,8 @@ class CartDetailPage extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       BigText(
-                                        text: cartController
-                                            .getItems[index].price!
-                                            .toString(),
+                                        text:
+                                            _cartList[index].price!.toString(),
                                         color: Colors.redAccent,
                                       ),
                                       Container(
@@ -126,7 +147,11 @@ class CartDetailPage extends StatelessWidget {
                                             color: Colors.white),
                                         child: Row(children: [
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              cartController.addItem(
+                                                  _cartList[index].product!,
+                                                  -1);
+                                            },
                                             child: Icon(
                                               Icons.remove,
                                               color: AppColors.singColor,
@@ -135,12 +160,18 @@ class CartDetailPage extends StatelessWidget {
                                           SizedBox(
                                             width: AppDimensions.width10 / 2,
                                           ),
-                                          BigText(text: "30"),
+                                          BigText(
+                                              text: _cartList[index]
+                                                  .quantity!
+                                                  .toString()),
                                           SizedBox(
                                             width: AppDimensions.width10 / 2,
                                           ),
                                           GestureDetector(
-                                            onTap: () {},
+                                            onTap: () {
+                                              cartController.addItem(
+                                                  _cartList[index].product!, 1);
+                                            },
                                             child: Icon(
                                               Icons.add,
                                               color: AppColors.singColor,

@@ -19,12 +19,11 @@ class RouteHelper {
 
   static getInitial() => '$initial';
 
-  static String getRecommendedProductDetail(int pageId) =>
-      '$recommendedProductDetail?pageId=$pageId';
-      
+  static String getRecommendedProductDetail(int pageId, String pageName) =>
+      '$recommendedProductDetail?pageId=$pageId&pageName=$pageName';
 
-  static String getPopularProductDetail(int pageId) =>
-      '$popularProductDetail?pageId=$pageId ';
+  static String getPopularProductDetail(int pageId, String pageName) =>
+      '$popularProductDetail?pageId=$pageId&pageName=$pageName ';
 
   static String getSignup() => '$signup';
   static String getCartPage() => '$cartPage';
@@ -39,16 +38,21 @@ class RouteHelper {
         name: popularProductDetail,
         page: () {
           var pageId = Get.parameters['pageId'];
+          var pageName = Get.parameters['pageName'];
           return PopularProductDetail(
-            pageId: int.parse(pageId!),
-          );
+              pageId: int.parse(pageId!), pageName: pageName!);
         },
         transition: Transition.fadeIn),
     GetPage(
         name: recommendedProductDetail,
         page: () {
           var pageId = Get.parameters['pageId'];
-          return RecommendedProductDetail(pageId: int.parse(pageId!));
+          var pageName = Get.parameters['pageName'];
+
+          return RecommendedProductDetail(
+            pageId: int.parse(pageId!),
+            pageName: pageName!,
+          );
         },
         transition: Transition.fadeIn),
     GetPage(
@@ -61,7 +65,6 @@ class RouteHelper {
         name: cartPage,
         page: () {
           return CartDetailPage();
-
         },
         transition: Transition.fadeIn),
     GetPage(
