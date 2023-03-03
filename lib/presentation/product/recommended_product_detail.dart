@@ -41,9 +41,8 @@ class RecommendedProductDetail extends StatelessWidget {
                         Get.toNamed(RouteHelper.getCartPage());
                       } else if (pageName.trim() == "home") {
                         Get.toNamed(RouteHelper.getInitial());
+                        
                       }
-
-                    
                     },
                     child: AppIcon(icon: Icons.clear)),
                 // AppIcon(icon: Icons.shopping_cart_sharp),

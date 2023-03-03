@@ -143,6 +143,8 @@ class PopularProductDetail extends StatelessWidget {
         ),
         bottomNavigationBar: GetBuilder<PopularProductController>(
           builder: (popularProduct) {
+            
+            
             return Container(
               height: AppDimensions.bottomHeightBar - 10,
               padding: EdgeInsets.only(

@@ -1,6 +1,7 @@
 import 'package:food_delivery/presentation/account/account_page.dart';
 import 'package:food_delivery/presentation/auth/signup_page.dart';
 import 'package:food_delivery/presentation/cart/cart_detail_page.dart';
+import 'package:food_delivery/presentation/home/home_page.dart';
 import 'package:food_delivery/presentation/home/product_page_body.dart';
 import 'package:food_delivery/presentation/product/popular_product_detail.dart';
 import 'package:food_delivery/presentation/product/recommended_product_detail.dart';
@@ -31,9 +32,7 @@ class RouteHelper {
 
   static List<GetPage> routes = [
     GetPage(
-        name: initial,
-        page: () => MainProductPage(),
-        transition: Transition.fadeIn),
+        name: initial, page: () => HomePage(), transition: Transition.fadeIn),
     GetPage(
         name: popularProductDetail,
         page: () {

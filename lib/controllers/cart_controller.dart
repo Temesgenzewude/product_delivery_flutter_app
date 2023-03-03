@@ -10,7 +10,6 @@ class CartController extends GetxController {
   CartController({required this.cartRepo});
 
   Map<int, CartModel> _items = {};
-  
 
   Map<int, CartModel> get cartItems => _items;
 
@@ -94,6 +93,14 @@ class CartController extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
-    
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
+  
   }
 }
