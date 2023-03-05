@@ -21,6 +21,7 @@ class _LandingScreenState extends State<LandingScreen>
   late AnimationController animationController;
 
   Future<void> _loadResources() async {
+    
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
   }

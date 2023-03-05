@@ -10,6 +10,7 @@ class CartController extends GetxController {
   CartController({required this.cartRepo});
 
   Map<int, CartModel> _items = {};
+  List<CartModel> storageItems = [];
 
   Map<int, CartModel> get cartItems => _items;
 
@@ -54,6 +55,7 @@ class CartController extends GetxController {
             backgroundColor: Color(0xFF262626), colorText: Colors.white);
       }
     }
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -101,6 +103,19 @@ class CartController extends GetxController {
       total += value.quantity! * value.price!;
     });
     return total;
-  
+  }
+
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
   }
 }

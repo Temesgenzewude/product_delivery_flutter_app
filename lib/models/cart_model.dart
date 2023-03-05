@@ -18,7 +18,7 @@ class CartModel {
       this.isExist,
       this.time,
       this.quantity,
-      this.product});
+      this.product}); 
 
   CartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -36,12 +36,14 @@ class CartModel {
 
     data['id'] = id;
     data['name'] = name;
+
     data['price'] = price;
     data['img'] = img;
     data['quantity'] = quantity;
     data['time'] = time;
     data['isExist'] = isExist;
     data['product'] = product != null ? product!.toJson() : null;
+
 
     return data;
   }
