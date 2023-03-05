@@ -63,4 +63,6 @@ class AppDimensions {
 
   //bottom height
   static double bottomHeightBar = screenHeight / (screenHeight / 120);
+
+  static double landingImage250 = screenHeight / (screenHeight / 250);
 }

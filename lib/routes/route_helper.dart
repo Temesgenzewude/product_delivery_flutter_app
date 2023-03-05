@@ -3,12 +3,14 @@ import 'package:food_delivery/presentation/auth/signup_page.dart';
 import 'package:food_delivery/presentation/cart/cart_detail_page.dart';
 import 'package:food_delivery/presentation/home/home_page.dart';
 import 'package:food_delivery/presentation/home/product_page_body.dart';
+import 'package:food_delivery/presentation/landing/landing_page.dart';
 import 'package:food_delivery/presentation/product/popular_product_detail.dart';
 import 'package:food_delivery/presentation/product/recommended_product_detail.dart';
 import 'package:food_delivery/presentation/home/main_product_page.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
+  static String landingPage = "/landing-page";
   static const String initial = "/";
 
   static const String popularProductDetail = "/popular-product-detail";
@@ -17,6 +19,8 @@ class RouteHelper {
   static const String signup = "/signup";
   static const String cartPage = '/cart-page';
   static const String profilePage = '/profile';
+
+  static getLandingPage() => '$landingPage';
 
   static getInitial() => '$initial';
 
@@ -31,6 +35,7 @@ class RouteHelper {
   static String getProfilePage() => '$profilePage';
 
   static List<GetPage> routes = [
+    GetPage(name: landingPage, page: (() => LandingScreen())),
     GetPage(
         name: initial, page: () => HomePage(), transition: Transition.fadeIn),
     GetPage(
