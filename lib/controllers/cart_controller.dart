@@ -17,7 +17,7 @@ class CartController extends GetxController {
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     if (_items.containsKey(product.id)) {
-      print("Exists and updating");
+      // print("Exists and updating");
       _items.update(product.id!, (value) {
         totalQuantity = value.quantity! + quantity;
         return CartModel(
@@ -32,12 +32,12 @@ class CartController extends GetxController {
       });
 
       if (totalQuantity <= 0) {
-        print("Exists and removing ");
+        // print("Exists and removing ");
         _items.remove(product.id);
       }
     } else {
       if (quantity > 0) {
-        print("Absent and adding");
+        // print("Absent and adding");
         _items.putIfAbsent(
             product.id!,
             () => CartModel(
@@ -117,5 +117,18 @@ class CartController extends GetxController {
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
+  }
+
+  void addToCartHistory() {
+    cartRepo.addToCartHistoryList();
+    clearFromCart();
+  }
+
+  void clearFromCart() {
+    _items = {};
+    update(); 
+  }
+  List<CartModel> getCartHistoryList(){
+    return cartRepo.getCartHistoryList();
   }
 }

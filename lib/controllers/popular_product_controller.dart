@@ -31,14 +31,15 @@ class PopularProductController extends GetxController {
     Response response = await popularProductRepo.getPopularProductList();
 
     if (response.statusCode == 200) {
-      print("Successfully loaded products");
+      // print("Successfully loaded products");
+
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
 
       update();
     } else {
-      print("Error loading products");
+      // print("Error loading products");
     }
   }
 
@@ -83,7 +84,7 @@ class PopularProductController extends GetxController {
       _inCartItems = _cartController.getQuantity(productModel);
     }
 
-    print("The quantity in the cart is " + _inCartItems.toString());
+    // print("The quantity in the cart is " + _inCartItems.toString());
   }
 
   void addItem(ProductModel product) {
@@ -93,7 +94,7 @@ class PopularProductController extends GetxController {
 
     _cartController.cartItems.forEach((key, value) {});
 
-    print("The length of the cart is ${_cartController.cartItems.length} ");
+    // print("The length of the cart is ${_cartController.cartItems.length} ");
     update();
   }
 

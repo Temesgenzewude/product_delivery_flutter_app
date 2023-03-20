@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
@@ -11,18 +12,25 @@ class CartRepo extends GetxService {
   CartRepo({required this.sharedPreferences});
 
   List<String> cart = [];
+  List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
+    // sharedPreferences.remove(AppConstants.CART_LIST);
+    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    var time = DateTime.now(); 
+
+
     cart = [];
     //convert objects to strings because shared preferences only accepts string
     cartList.forEach((element) {
-      cart.add(jsonEncode(element));
+      element.time = time.toString();
+      return cart.add(jsonEncode(element));
     });
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
 
     // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
 
-    getCartList();
+    // getCartList();
   }
 
   List<CartModel> getCartList() {
@@ -36,5 +44,43 @@ class CartRepo extends GetxService {
     });
 
     return cartList;
+  }
+
+  List<CartModel> getCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
+      // cartHistory = [];
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+    }
+    // print("Cart history ${cartHistory}");
+
+    List<CartModel> cartHistoryList = [];
+    cartHistory.forEach((element) {
+      cartHistoryList.add(CartModel.fromJson(jsonDecode(element)));
+    });
+    // print("cartHistoryList ${cartHistoryList}");
+    return cartHistoryList;
+  }
+
+  void addToCartHistoryList() {
+    if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+    }
+    for (int i = 0; i < cart.length; i++) {
+      // print("From addToCartHistoryList : CartRepo ");
+      // print("history list ${cart[i]}");
+      cartHistory.add(cart[i]);
+    }
+    removeCart();
+    sharedPreferences.setStringList(
+        AppConstants.CART_HISTORY_LIST, cartHistory);
+
+    // print("The length of history list is ${getCartHistoryList().length}");
+  }
+
+  void removeCart() {
+    cart = [];
+    sharedPreferences.remove(AppConstants.CART_LIST);
   }
 }

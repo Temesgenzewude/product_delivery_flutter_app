@@ -238,7 +238,9 @@ class CartDetailPage extends StatelessWidget {
                       ]),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        cartController.addToCartHistory();
+                      },
                       child: Container(
                         padding: EdgeInsets.only(
                             left: AppDimensions.width20,
