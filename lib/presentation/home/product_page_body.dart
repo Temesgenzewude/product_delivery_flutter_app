@@ -47,6 +47,8 @@ class _ProductPageBodyState extends State<ProductPageBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
+
+      
       children: [
         //slider
         GetBuilder<PopularProductController>(builder: (popularProducts) {
@@ -266,6 +268,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
     return Transform(
       transform: matrix,
       child: Stack(
+        
         children: [
           GestureDetector(
             onTap: () {

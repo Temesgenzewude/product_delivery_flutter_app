@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartData();
+    
+    
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(
         builder: (_) {
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Product Delivery App',
             initialRoute: RouteHelper.getLandingPage(),
+            
+            
             getPages: RouteHelper.routes,
           );
         },

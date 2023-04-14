@@ -16,11 +16,11 @@ class _HomePageState extends State<HomePage> {
   List pages = [
     MainProductPage(),
     Container(
-      child: Center(child: Text("Next Page")),
+      child: Center(child: Text("Cart Page")),
     ),
     CartHistoryPage(),
     Container(
-      child: Center(child: Text("Next Next Next Page")),
+      child: Center(child: Text("Profile Page")),
     ),
   ];
 
