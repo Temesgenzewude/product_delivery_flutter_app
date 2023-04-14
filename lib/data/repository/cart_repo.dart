@@ -73,10 +73,11 @@ class CartRepo extends GetxService {
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
 
-    print("The length of history list is ${getCartHistoryList().length}");
-    for (int j = 0; j < getCartHistoryList().length; j++) {
-      print("The time for the order is ${getCartHistoryList()[j].time}");
-    }
+    // print("The length of history list is ${getCartHistoryList().length}");
+    // for (int j = 0; j < getCartHistoryList().length; j++) {
+    //   print("The time for the order is ${getCartHistoryList()[j].time}");
+    // }
+
   }
 
   void removeCart() {
