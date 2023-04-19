@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/presentation/cart/cart_history_page.dart';
 
 import 'package:food_delivery/presentation/home/main_product_page.dart';
+import 'package:food_delivery/presentation/profile_pages/profile_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,9 +20,7 @@ class _HomePageState extends State<HomePage> {
       child: Center(child: Text("Cart Page")),
     ),
     CartHistoryPage(),
-    Container(
-      child: Center(child: Text("Profile Page")),
-    ),
+    ProfilePage(),
   ];
 
   void handleBottomNaveTap(int index) {

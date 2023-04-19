@@ -1,20 +1,24 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 
-class AccountWidget extends StatelessWidget {
-  AppIcon appIcon;
-  BigText bigText;
-  AccountWidget({super.key, required this.appIcon, required this.bigText});
+class ProfileWidget extends StatelessWidget {
+  final AppIcon appIcon;
+  final BigText bigText;
+  const ProfileWidget({
+    Key? key,
+    required this.appIcon,
+    required this.bigText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          left: AppDimensions.width10,
+          left: AppDimensions.width20,
           top: AppDimensions.width10,
           bottom: AppDimensions.width10),
       decoration: BoxDecoration(

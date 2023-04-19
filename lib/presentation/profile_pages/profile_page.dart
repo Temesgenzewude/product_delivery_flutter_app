@@ -3,40 +3,41 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/profile_widgets/profile_widget.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:food_delivery/widgets/profile_widgets/profile_widget.dart';
 
-class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: AppColors.mainColor,
         title: BigText(
-          text: 'Profile',
-          size: 24,
+          text: "Profile",
+          size: AppDimensions.font24,
           color: Colors.white,
         ),
       ),
       body: Container(
-        margin: EdgeInsets.only(top: AppDimensions.height20),
         width: double.maxFinite,
+        margin: EdgeInsets.only(top: AppDimensions.height20),
         child: Column(children: [
-          //profile icon
+          // profile icon
           AppIcon(
             icon: Icons.person,
             backgroundColor: AppColors.mainColor,
             iconColor: Colors.white,
-            size: AppDimensions.height25 * 6,
-            iconSize: AppDimensions.height25 * 3,
+            iconSize: AppDimensions.height45 + AppDimensions.height30,
+            size: AppDimensions.height30 * 5,
           ),
           SizedBox(
-            height: AppDimensions.height20,
+            height: AppDimensions.height30,
           ),
-          //name
+          // name
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -46,27 +47,27 @@ class AccountPage extends StatelessWidget {
                       icon: Icons.person,
                       backgroundColor: AppColors.mainColor,
                       iconColor: Colors.white,
+                      iconSize: AppDimensions.height25,
                       size: AppDimensions.height10 * 5,
-                      iconSize: AppDimensions.height10 * 5 / 2,
                     ),
                     bigText: BigText(
-                      text: "Temesgen",
+                      text: "Abebe",
                     ),
                   ),
                   SizedBox(
                     height: AppDimensions.height20,
                   ),
-                  //phone
+                  // phone
                   ProfileWidget(
                     appIcon: AppIcon(
                       icon: Icons.phone,
                       backgroundColor: AppColors.yellowColor,
                       iconColor: Colors.white,
+                      iconSize: AppDimensions.height25,
                       size: AppDimensions.height10 * 5,
-                      iconSize: AppDimensions.height10 * 5 / 2,
                     ),
                     bigText: BigText(
-                      text: "+251934444545",
+                      text: "+1448909856",
                     ),
                   ),
                   SizedBox(
@@ -78,52 +79,97 @@ class AccountPage extends StatelessWidget {
                       icon: Icons.email,
                       backgroundColor: AppColors.yellowColor,
                       iconColor: Colors.white,
+                      iconSize: AppDimensions.height25,
                       size: AppDimensions.height10 * 5,
-                      iconSize: AppDimensions.height10 * 5 / 2,
                     ),
                     bigText: BigText(
-                      text: "my@gmail.com",
+                      text: "myemail@gmail.com",
                     ),
                   ),
                   SizedBox(
                     height: AppDimensions.height20,
                   ),
-                  //address
+                  // address
                   ProfileWidget(
                     appIcon: AppIcon(
                       icon: Icons.location_on,
                       backgroundColor: AppColors.yellowColor,
                       iconColor: Colors.white,
+                      iconSize: AppDimensions.height25,
                       size: AppDimensions.height10 * 5,
-                      iconSize: AppDimensions.height10 * 5 / 2,
                     ),
                     bigText: BigText(
-                      text: "Addis Ababa",
+                      text: "New York City 21st Street, New York,",
                     ),
                   ),
                   SizedBox(
                     height: AppDimensions.height20,
                   ),
-                  //message
+                  // messages
                   ProfileWidget(
                     appIcon: AppIcon(
-                      icon: Icons.message_outlined,
+                      icon: Icons.message,
                       backgroundColor: Colors.redAccent,
                       iconColor: Colors.white,
+                      iconSize: AppDimensions.height25,
                       size: AppDimensions.height10 * 5,
-                      iconSize: AppDimensions.height10 * 5 / 2,
                     ),
                     bigText: BigText(
-                      text: "Hello",
+                      text: "Hi there",
                     ),
                   ),
                   SizedBox(
                     height: AppDimensions.height20,
                   ),
+                  //  ProfileWidget(
+                  //   appIcon: AppIcon(
+                  //     icon: Icons.person,
+                  //     backgroundColor: AppColors.mainColor,
+                  //     iconColor: Colors.white,
+                  //     iconSize: AppDimensions.height25,
+                  //     size: AppDimensions.height10 * 5,
+                  //   ),
+                  //   bigText: BigText(
+                  //     text: "Abebe",
+                  //   ),
+                  // ),
+                  //  SizedBox(
+                  //   height: AppDimensions.height20,
+                  // ),
+                  //  ProfileWidget(
+                  //   appIcon: AppIcon(
+                  //     icon: Icons.person,
+                  //     backgroundColor: AppColors.mainColor,
+                  //     iconColor: Colors.white,
+                  //     iconSize: AppDimensions.height25,
+                  //     size: AppDimensions.height10 * 5,
+                  //   ),
+                  //   bigText: BigText(
+                  //     text: "Abebe",
+                  //   ),
+                  // ),
+                  //  SizedBox(
+                  //   height: AppDimensions.height20,
+                  // ),
+                  //  ProfileWidget(
+                  //   appIcon: AppIcon(
+                  //     icon: Icons.person,
+                  //     backgroundColor: AppColors.mainColor,
+                  //     iconColor: Colors.white,
+                  //     iconSize: AppDimensions.height25,
+                  //     size: AppDimensions.height10 * 5,
+                  //   ),
+                  //   bigText: BigText(
+                  //     text: "Abebe",
+                  //   ),
+                  // ),
+                  //  SizedBox(
+                  //   height: AppDimensions.height20,
+                  // ),
                 ],
               ),
             ),
-          )
+          ),
         ]),
       ),
     );
