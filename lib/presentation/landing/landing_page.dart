@@ -25,6 +25,7 @@ class _LandingScreenState extends State<LandingScreen>
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
   }
+  
 
   @override
   void initState() {

@@ -5,6 +5,10 @@ import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 
 class MainProductPage extends StatefulWidget {
   const MainProductPage({super.key});
@@ -14,11 +18,16 @@ class MainProductPage extends StatefulWidget {
 }
 
 class _MainProductPageState extends State<MainProductPage> {
+  Future<void> _loadResources() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-          
+    return RefreshIndicator(
+      onRefresh: _loadResources,
+        child: Column(
       children: [
         //header
 
@@ -67,10 +76,8 @@ class _MainProductPageState extends State<MainProductPage> {
         ),
         //body
         Expanded(
-          
           child: SingleChildScrollView(
             child: ProductPageBody(),
-            
           ),
         ),
       ],
