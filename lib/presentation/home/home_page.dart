@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/presentation/auth/signup_page.dart';
 import 'package:food_delivery/presentation/cart/cart_history_page.dart';
 
 import 'package:food_delivery/presentation/home/main_product_page.dart';
@@ -16,9 +17,10 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     MainProductPage(),
-    Container(
-      child: Center(child: Text("Cart Page")),
-    ),
+    SignUpPage(),
+    // Container(
+    //   child: Center(child: Text("Cart Page")),
+    // ),
     CartHistoryPage(),
     ProfilePage(),
   ];

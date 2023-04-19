@@ -7,6 +7,7 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   const AppTextField(
+    
       {super.key,
       required this.textEditingController,
       required this.icon,

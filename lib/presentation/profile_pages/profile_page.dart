@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
@@ -121,51 +120,6 @@ class ProfilePage extends StatelessWidget {
                   SizedBox(
                     height: AppDimensions.height20,
                   ),
-                  //  ProfileWidget(
-                  //   appIcon: AppIcon(
-                  //     icon: Icons.person,
-                  //     backgroundColor: AppColors.mainColor,
-                  //     iconColor: Colors.white,
-                  //     iconSize: AppDimensions.height25,
-                  //     size: AppDimensions.height10 * 5,
-                  //   ),
-                  //   bigText: BigText(
-                  //     text: "Abebe",
-                  //   ),
-                  // ),
-                  //  SizedBox(
-                  //   height: AppDimensions.height20,
-                  // ),
-                  //  ProfileWidget(
-                  //   appIcon: AppIcon(
-                  //     icon: Icons.person,
-                  //     backgroundColor: AppColors.mainColor,
-                  //     iconColor: Colors.white,
-                  //     iconSize: AppDimensions.height25,
-                  //     size: AppDimensions.height10 * 5,
-                  //   ),
-                  //   bigText: BigText(
-                  //     text: "Abebe",
-                  //   ),
-                  // ),
-                  //  SizedBox(
-                  //   height: AppDimensions.height20,
-                  // ),
-                  //  ProfileWidget(
-                  //   appIcon: AppIcon(
-                  //     icon: Icons.person,
-                  //     backgroundColor: AppColors.mainColor,
-                  //     iconColor: Colors.white,
-                  //     iconSize: AppDimensions.height25,
-                  //     size: AppDimensions.height10 * 5,
-                  //   ),
-                  //   bigText: BigText(
-                  //     text: "Abebe",
-                  //   ),
-                  // ),
-                  //  SizedBox(
-                  //   height: AppDimensions.height20,
-                  // ),
                 ],
               ),
             ),

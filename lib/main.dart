@@ -3,6 +3,8 @@ import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 
+import 'package:food_delivery/presentation/landing/landing_page.dart';
+
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartData();
-    
-    
+
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(
         builder: (_) {
@@ -30,9 +31,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Product Delivery App',
             initialRoute: RouteHelper.getLandingPage(),
-            
-            
             getPages: RouteHelper.routes,
+            home: LandingScreen(),
           );
         },
       );

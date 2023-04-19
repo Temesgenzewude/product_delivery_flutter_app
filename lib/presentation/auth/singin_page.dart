@@ -1,13 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_textfield_widget.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:get/get.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,6 @@ class SignUpPage extends StatelessWidget {
     var phoneController = TextEditingController();
 
     var nameController = TextEditingController();
-    var singUpOptionsImages = ["t.png", "f.png", "g.png"];
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -40,6 +40,31 @@ class SignUpPage extends StatelessWidget {
           SizedBox(
             height: AppDimensions.height20,
           ),
+          Container(
+            width: double.maxFinite,
+            margin: EdgeInsets.only(left: AppDimensions.width20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Hello",
+                  style: TextStyle(
+                      fontSize: AppDimensions.font20 * 3 + AppDimensions.font10,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Sign into your account",
+                  style: TextStyle(
+                    fontSize: AppDimensions.font20,
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: AppDimensions.height20,
+          ),
 
           // email
           AppTextField(
@@ -57,22 +82,28 @@ class SignUpPage extends StatelessWidget {
           SizedBox(
             height: AppDimensions.height20,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: "Sign into your account",
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontSize: AppDimensions.font16,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: AppDimensions.width20,
+              ),
+            ],
+          ),
+
+          SizedBox(
+            height: AppDimensions.screenHeight*0.05,
+          ),
           //name
-          AppTextField(
-              textEditingController: nameController,
-              icon: Icons.person,
-              hintText: "Name"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
-          //phone
-          AppTextField(
-              textEditingController: phoneController,
-              icon: Icons.phone,
-              hintText: "Phone"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
 
           GestureDetector(
             onTap: () {},
@@ -85,52 +116,36 @@ class SignUpPage extends StatelessWidget {
               ),
               child: Center(
                   child: BigText(
-                text: "Sign Up",
+                text: "Sign In",
                 size: AppDimensions.font10 * 3,
                 color: Colors.white,
               )),
             ),
           ),
-          SizedBox(
-            height: AppDimensions.height10,
-          ),
 
-          //tag line
-          RichText(
-            text: TextSpan(
-              recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
-              text: "Have an account already?",
-              style: TextStyle(
-                color: Colors.grey[500],
-                fontSize: AppDimensions.font20,
-              ),
-            ),
-          ),
           SizedBox(
             height: AppDimensions.screenHeight * 0.05,
           ),
           RichText(
             text: TextSpan(
-              text: "Signup using the following options",
-              style: TextStyle(
-                color: Colors.grey[500],
-                fontSize: AppDimensions.font16,
-              ),
-            ),
-          ),
-          Wrap(
-            children: List.generate(
-              3,
-              (index) => Padding(
-                padding: EdgeInsets.all(AppDimensions.height10),
-                child: CircleAvatar(
-                  radius: AppDimensions.radius30,
-                  backgroundImage:
-                      AssetImage("images/${singUpOptionsImages[index]}"),
+                text: "Don't have an account?",
+                style: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: AppDimensions.font20,
                 ),
-              ),
-            ),
-          )
+                children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () => Get.toNamed(RouteHelper.getSignUpPage()),
+                    text: "  Sign Up",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.mainBlackColor,
+                      fontSize: AppDimensions.font20,
+                    ),
+                  ),
+                ]),
+          ),
         ]),
       ),
     );

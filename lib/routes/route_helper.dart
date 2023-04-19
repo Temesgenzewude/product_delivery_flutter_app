@@ -1,5 +1,6 @@
 import 'package:food_delivery/presentation/account/account_page.dart';
 import 'package:food_delivery/presentation/auth/signup_page.dart';
+import 'package:food_delivery/presentation/auth/singin_page.dart';
 import 'package:food_delivery/presentation/cart/cart_detail_page.dart';
 import 'package:food_delivery/presentation/home/home_page.dart';
 import 'package:food_delivery/presentation/home/product_page_body.dart';
@@ -18,7 +19,10 @@ class RouteHelper {
   static const String popularProductDetail = "/popular-product-detail";
 
   static const String recommendedProductDetail = "/recommended-product-detail";
-  static const String signup = "/signup";
+  static const String signUpPage = "/sign-up-page";
+
+  static const String signInPage = "/sign-in-page";
+
   static const String cartPage = '/cart-page';
   static const String profilePage = '/profile';
   static const String cartHistoryPage = '/cart-history-page';
@@ -33,7 +37,9 @@ class RouteHelper {
   static String getPopularProductDetail(int pageId, String pageName) =>
       '$popularProductDetail?pageId=$pageId&pageName=$pageName ';
 
-  static String getSignup() => '$signup';
+  static String getSignUpPage() => '$signUpPage';
+  static String getSignInPage() => '$signInPage';
+
   static String getCartPage() => '$cartPage';
   static String getProfilePage() => '$profilePage';
   static String getCartHistoryPage() => '$cartHistoryPage';
@@ -64,9 +70,15 @@ class RouteHelper {
         },
         transition: Transition.fadeIn),
     GetPage(
-        name: signup,
+        name: signUpPage,
         page: () {
           return SignUpPage();
+        },
+        transition: Transition.fadeIn),
+    GetPage(
+        name: signInPage,
+        page: () {
+          return SignInPage();
         },
         transition: Transition.fadeIn),
     GetPage(
