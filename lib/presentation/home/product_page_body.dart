@@ -1,8 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product_controller.dart';
-import 'package:food_delivery/models/products_model.dart';
+import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
+import 'package:food_delivery/controllers/recommended_product/recommended_product_controller.dart';
+import 'package:food_delivery/models/product/products_model.dart';
 import 'package:food_delivery/presentation/product/popular_product_detail.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';

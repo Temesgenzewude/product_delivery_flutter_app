@@ -10,6 +10,9 @@ class AppConstants {
   static const String RECOMMENDED_PRODUCT_END_POINT = "/products/recommended";
 
   static const String TOKEN = "someTokenToBeChangedLater1234567";
+    static const String SIGNUP_END_POINT= "/auth/register";
+
+
   static const String CART_LIST = "cart-list";
 
   static const String CART_HISTORY_LIST = "cart-history-list";

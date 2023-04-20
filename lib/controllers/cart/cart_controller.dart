@@ -1,6 +1,6 @@
-import 'package:food_delivery/data/repository/cart_repo.dart';
-import 'package:food_delivery/models/cart_model.dart';
-import 'package:food_delivery/models/products_model.dart';
+import 'package:food_delivery/data/repository/cart/cart_repo.dart';
+import 'package:food_delivery/models/cart/cart_model.dart';
+import 'package:food_delivery/models/product/products_model.dart';
 import 'package:get/get.dart';
 
 import 'package:flutter/material.dart';

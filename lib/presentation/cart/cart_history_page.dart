@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/models/cart_model.dart';
+import 'package:food_delivery/controllers/cart/cart_controller.dart';
+import 'package:food_delivery/models/cart/cart_model.dart';
 import 'package:food_delivery/presentation/base/no_data_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 

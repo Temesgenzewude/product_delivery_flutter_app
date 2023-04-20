@@ -31,6 +31,7 @@ class Product {
       });
     }
   }
+  
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();

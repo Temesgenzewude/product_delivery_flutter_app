@@ -7,8 +7,8 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/popular_product_controller.dart';
-import '../../controllers/recommended_product_controller.dart';
+import '../../controllers/popular_product/popular_product_controller.dart';
+import '../../controllers/recommended_product/recommended_product_controller.dart';
 
 class MainProductPage extends StatefulWidget {
   const MainProductPage({super.key});

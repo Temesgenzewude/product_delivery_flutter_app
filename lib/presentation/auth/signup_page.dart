@@ -1,5 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/auth/auth_controller.dart';
+import 'package:food_delivery/models/auth/signup_body_model.dart';
+import 'package:food_delivery/presentation/base/show_custom_snackbar.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_textfield_widget.dart';
@@ -18,6 +21,39 @@ class SignUpPage extends StatelessWidget {
 
     var nameController = TextEditingController();
     var singUpOptionsImages = ["t.png", "f.png", "g.png"];
+
+    void _registration() {
+      var authController = Get.find<AuthController>();
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (email.isEmpty) {
+        showCustomSnackBar("Email is required", title: "Email");
+      } else if (!GetUtils.isEmail(email)) {
+        showCustomSnackBar("Email Should be Valid", title: "Valid Email");
+      } else if (password.isEmpty) {
+        showCustomSnackBar("Password is required", title: "Password");
+      } else if (password.length < 6) {
+        showCustomSnackBar("Password must be at least 6 characters long",
+            title: "Valid Password");
+      } else if (name.isEmpty) {
+        showCustomSnackBar("Name is required", title: "Name");
+      } else if (phone.isEmpty) {
+        showCustomSnackBar("Phone number is required", title: "Phone Number");
+      } else {
+        SignUpBodyModel signUpBodyModel = SignUpBodyModel(
+            name: name, phone: phone, email: email, password: password);
+        authController.registration(signUpBodyModel).then((status) {
+          if (status.isSuccess) {
+            print("Successfully registered");
+          } else {
+            showCustomSnackBar(status.message);
+          }
+        });
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -75,7 +111,9 @@ class SignUpPage extends StatelessWidget {
           ),
 
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              _registration();
+            },
             child: Container(
               width: AppDimensions.screenWidth / 2,
               height: AppDimensions.screenHeight / 13,
