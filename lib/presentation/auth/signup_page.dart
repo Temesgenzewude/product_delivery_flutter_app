@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/auth/auth_controller.dart';
 import 'package:food_delivery/models/auth/signup_body_model.dart';
+import 'package:food_delivery/presentation/base/custom_loader.dart';
 import 'package:food_delivery/presentation/base/show_custom_snackbar.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -22,8 +23,7 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var singUpOptionsImages = ["t.png", "f.png", "g.png"];
 
-    void _registration() {
-      var authController = Get.find<AuthController>();
+    void _registration(AuthController authController) {
       String name = nameController.text.trim();
       String phone = phoneController.text.trim();
       String email = emailController.text.trim();
@@ -56,121 +56,129 @@ class SignUpPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(children: [
-          SizedBox(height: AppDimensions.screenHeight * 0.05),
-          //app logo
+        backgroundColor: Colors.white,
+        body: GetBuilder<AuthController>(
+          builder: (_authController) {
+            return !_authController.isLoading
+                ? SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(children: [
+                      SizedBox(height: AppDimensions.screenHeight * 0.05),
+                      //app logo
 
-          Container(
-            height: AppDimensions.screenHeight * 0.25,
-            child: Center(
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: AppDimensions.radius20 * 4,
-                backgroundImage: AssetImage('assets/images/logo2.jpg'),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
+                      Container(
+                        height: AppDimensions.screenHeight * 0.25,
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: AppDimensions.radius20 * 4,
+                            backgroundImage:
+                                AssetImage('assets/images/logo2.jpg'),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppDimensions.height20,
+                      ),
 
-          // email
-          AppTextField(
-              textEditingController: emailController,
-              icon: Icons.email,
-              hintText: "Email"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
-          //password
-          AppTextField(
-              textEditingController: passwordController,
-              icon: Icons.password_outlined,
-              hintText: "Password"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
-          //name
-          AppTextField(
-              textEditingController: nameController,
-              icon: Icons.person,
-              hintText: "Name"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
-          //phone
-          AppTextField(
-              textEditingController: phoneController,
-              icon: Icons.phone,
-              hintText: "Phone"),
-          SizedBox(
-            height: AppDimensions.height20,
-          ),
+                      // email
+                      AppTextField(
+                          textEditingController: emailController,
+                          icon: Icons.email,
+                          hintText: "Email"),
+                      SizedBox(
+                        height: AppDimensions.height20,
+                      ),
+                      //password
+                      AppTextField(
+                          textEditingController: passwordController,
+                          icon: Icons.password_outlined,
+                          hintText: "Password"),
+                      SizedBox(
+                        height: AppDimensions.height20,
+                      ),
+                      //name
+                      AppTextField(
+                          textEditingController: nameController,
+                          icon: Icons.person,
+                          hintText: "Name"),
+                      SizedBox(
+                        height: AppDimensions.height20,
+                      ),
+                      //phone
+                      AppTextField(
+                          textEditingController: phoneController,
+                          icon: Icons.phone,
+                          hintText: "Phone"),
+                      SizedBox(
+                        height: AppDimensions.height20,
+                      ),
 
-          GestureDetector(
-            onTap: () {
-              _registration();
-            },
-            child: Container(
-              width: AppDimensions.screenWidth / 2,
-              height: AppDimensions.screenHeight / 13,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppDimensions.radius30),
-                color: AppColors.mainColor,
-              ),
-              child: Center(
-                  child: BigText(
-                text: "Sign Up",
-                size: AppDimensions.font10 * 3,
-                color: Colors.white,
-              )),
-            ),
-          ),
-          SizedBox(
-            height: AppDimensions.height10,
-          ),
+                      GestureDetector(
+                        onTap: () {
+                          _registration(_authController);
+                        },
+                        child: Container(
+                          width: AppDimensions.screenWidth / 2,
+                          height: AppDimensions.screenHeight / 13,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(AppDimensions.radius30),
+                            color: AppColors.mainColor,
+                          ),
+                          child: Center(
+                              child: BigText(
+                            text: "Sign Up",
+                            size: AppDimensions.font10 * 3,
+                            color: Colors.white,
+                          )),
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppDimensions.height10,
+                      ),
 
-          //tag line
-          RichText(
-            text: TextSpan(
-              recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
-              text: "Have an account already?",
-              style: TextStyle(
-                color: Colors.grey[500],
-                fontSize: AppDimensions.font20,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: AppDimensions.screenHeight * 0.05,
-          ),
-          RichText(
-            text: TextSpan(
-              text: "Signup using the following options",
-              style: TextStyle(
-                color: Colors.grey[500],
-                fontSize: AppDimensions.font16,
-              ),
-            ),
-          ),
-          Wrap(
-            children: List.generate(
-              3,
-              (index) => Padding(
-                padding: EdgeInsets.all(AppDimensions.height10),
-                child: CircleAvatar(
-                  radius: AppDimensions.radius30,
-                  backgroundImage:
-                      AssetImage("images/${singUpOptionsImages[index]}"),
-                ),
-              ),
-            ),
-          )
-        ]),
-      ),
-    );
+                      //tag line
+                      RichText(
+                        text: TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Get.back(),
+                          text: "Have an account already?",
+                          style: TextStyle(
+                            color: Colors.grey[500],
+                            fontSize: AppDimensions.font20,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppDimensions.screenHeight * 0.05,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Signup using the following options",
+                          style: TextStyle(
+                            color: Colors.grey[500],
+                            fontSize: AppDimensions.font16,
+                          ),
+                        ),
+                      ),
+                      Wrap(
+                        children: List.generate(
+                          3,
+                          (index) => Padding(
+                            padding: EdgeInsets.all(AppDimensions.height10),
+                            child: CircleAvatar(
+                              radius: AppDimensions.radius30,
+                              backgroundImage: AssetImage(
+                                  "images/${singUpOptionsImages[index]}"),
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
+                  )
+                : const CustomLoader();
+          },
+        ));
   }
 }
