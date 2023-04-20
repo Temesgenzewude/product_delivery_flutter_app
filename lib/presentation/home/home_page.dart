@@ -17,10 +17,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     MainProductPage(),
-    SignUpPage(),
-    // Container(
-    //   child: Center(child: Text("Cart Page")),
-    // ),
+    Container(
+      child: Center(child: Text("Cart History Page")),
+    ),
     CartHistoryPage(),
     ProfilePage(),
   ];

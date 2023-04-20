@@ -4,6 +4,7 @@ import 'package:food_delivery/controllers/auth/auth_controller.dart';
 import 'package:food_delivery/models/auth/signup_body_model.dart';
 import 'package:food_delivery/presentation/base/custom_loader.dart';
 import 'package:food_delivery/presentation/base/show_custom_snackbar.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_textfield_widget.dart';
@@ -47,7 +48,8 @@ class SignUpPage extends StatelessWidget {
             name: name, phone: phone, email: email, password: password);
         authController.registration(signUpBodyModel).then((status) {
           if (status.isSuccess) {
-            print("Successfully registered");
+            // print("Successfully registered");
+            Get.toNamed(RouteHelper.getInitial());
           } else {
             showCustomSnackBar(status.message);
           }
@@ -91,6 +93,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       //password
                       AppTextField(
+                          isObscure: true,
                           textEditingController: passwordController,
                           icon: Icons.password_outlined,
                           hintText: "Password"),
@@ -142,7 +145,8 @@ class SignUpPage extends StatelessWidget {
                       RichText(
                         text: TextSpan(
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.back(),
+                            ..onTap =
+                                () => Get.toNamed(RouteHelper.getSignInPage()),
                           text: "Have an account already?",
                           style: TextStyle(
                             color: Colors.grey[500],

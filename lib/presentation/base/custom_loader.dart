@@ -7,7 +7,6 @@ class CustomLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("I am printing loading state");
     return Center(
       child: Container(
         height: AppDimensions.height20 * 5,
@@ -20,6 +19,6 @@ class CustomLoader extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-    ); 
+    );
   }
 }

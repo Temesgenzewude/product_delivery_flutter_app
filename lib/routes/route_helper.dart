@@ -74,13 +74,14 @@ class RouteHelper {
         page: () {
           return SignUpPage();
         },
-        transition: Transition.fadeIn),
+        transition: Transition.fade),
+
     GetPage(
         name: signInPage,
         page: () {
           return SignInPage();
         },
-        transition: Transition.fadeIn),
+        transition: Transition.fade),
     GetPage(
         name: cartPage,
         page: () {
@@ -98,6 +99,6 @@ class RouteHelper {
         page: () {
           return CartHistoryPage();
         },
-        transition: Transition.fadeIn)
+        transition: Transition.fade)
   ];
 }

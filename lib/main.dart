@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
             title: 'Product Delivery App',
             initialRoute: RouteHelper.getLandingPage(),
             getPages: RouteHelper.routes,
+            
           );
         },
       );
