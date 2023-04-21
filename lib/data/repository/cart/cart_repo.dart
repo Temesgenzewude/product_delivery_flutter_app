@@ -77,11 +77,15 @@ class CartRepo extends GetxService {
     // for (int j = 0; j < getCartHistoryList().length; j++) {
     //   print("The time for the order is ${getCartHistoryList()[j].time}");
     // }
-
   }
 
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
+  }
+
+  void clearCartHistoryList() {
+    removeCart();
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
   }
 }

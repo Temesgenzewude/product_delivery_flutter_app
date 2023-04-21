@@ -53,7 +53,6 @@ class CartController extends GetxController {
                 time: DateTime.now().toString()));
       } else {
         Get.snackbar(
-          
             "Item Count", "You should add at least one item in the cart !",
             backgroundColor: Color(0xFF262626), colorText: Colors.white);
       }
@@ -144,6 +143,11 @@ class CartController extends GetxController {
 
   void addToCartList() {
     cartRepo.addToCartList(getItems);
-    update(); 
+    update();
+  }
+
+  void clearCartHistoryList() {
+    cartRepo.clearCartHistoryList();
+    update();
   }
 }

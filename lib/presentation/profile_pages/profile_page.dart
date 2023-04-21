@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/controllers/auth/auth_controller.dart';
+import 'package:food_delivery/presentation/base/show_custom_snackbar.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/profile_widgets/profile_widget.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/cart/cart_controller.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -115,6 +121,34 @@ class ProfilePage extends StatelessWidget {
                     ),
                     bigText: BigText(
                       text: "Hi there",
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppDimensions.height20,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      if (Get.find<AuthController>().userLoggedIn()) {
+                        Get.find<AuthController>().clearSharedData();
+                        Get.find<CartController>().clearFromCart();
+                        Get.find<CartController>().clearCartHistoryList();
+                        Get.offNamed(RouteHelper.getSignInPage());
+                      } else {
+                        showCustomSnackBar("Your are not logged in",
+                            title: "Not Logged In");
+                      }
+                    },
+                    child: ProfileWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.logout_outlined,
+                        backgroundColor: Colors.redAccent,
+                        iconColor: Colors.white,
+                        iconSize: AppDimensions.height25,
+                        size: AppDimensions.height10 * 5,
+                      ),
+                      bigText: BigText(
+                        text: "Logout",
+                      ),
                     ),
                   ),
                   SizedBox(
