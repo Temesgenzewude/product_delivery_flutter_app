@@ -67,3 +67,4 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.clearSharedData();
   }
 }
+

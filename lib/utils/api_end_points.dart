@@ -16,6 +16,10 @@ class AppConstants {
 
   static const String SIGNUP_END_POINT = "/auth/register";
   static const String LOGIN_END_POINT = "/auth/login";
+    static const String USER_INFO_END_POINT = "/customer/info";
+
+
+
 
   static const String CART_LIST = "cart-list";
 
