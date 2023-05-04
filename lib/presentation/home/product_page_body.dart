@@ -142,11 +142,11 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                             //show product image
 
                             Container(
-                              height: AppDimensions.listViewImgWidthSize120,
-                              width: AppDimensions.listViewImgWidthSize120,
+                              height: AppDimensions.height25*4,
+                              width: AppDimensions.height25*4,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
-                                  AppDimensions.radius20,
+                                  AppDimensions.radius15,
                                 ),
                                 color: Colors.white38,
                                 image: DecorationImage(
@@ -201,6 +201,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           IconAndText(
+
                                             icon: Icons.circle_sharp,
                                             text: "Normal",
                                             iconColor: AppColors.iconColor1,

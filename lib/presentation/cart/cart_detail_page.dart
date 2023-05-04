@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/auth/auth_controller.dart';
 import 'package:food_delivery/controllers/cart/cart_controller.dart';
+import 'package:food_delivery/controllers/location/location_controller.dart';
 import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
 import 'package:food_delivery/presentation/base/no_data_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
@@ -277,7 +278,18 @@ class CartDetailPage extends StatelessWidget {
                             onTap: () {
                               if (Get.find<AuthController>().userLoggedIn()) {
                                 cartController.addToCartHistoryList();
+                                // print("User logged in");
+
+                                if (Get.find<LocationController>()
+                                    .addressList
+                                    .isEmpty) {
+                                  // print("Going to address pag");
+                                  Get.toNamed(RouteHelper.getAddressPage());
+                                } else {
+                                  Get.offNamed(RouteHelper.getInitial());
+                                }
                               } else {
+                                // print("User not logged in");
                                 Get.toNamed(RouteHelper.getSignInPage());
                               }
                             },

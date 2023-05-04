@@ -10,6 +10,7 @@ class IconAndText extends StatelessWidget {
   final Color iconColor;
 
   const IconAndText({
+
     Key? key,
     required this.icon,
     required this.text,
@@ -23,10 +24,10 @@ class IconAndText extends StatelessWidget {
         Icon(
           icon,
           color: iconColor,
-          size: AppDimensions.iconSize24,
+          size: AppDimensions.height15+AppDimensions.height10/3,
         ),
         SizedBox(
-          width: AppDimensions.width10 / 2,
+          width: AppDimensions.width10/4,
         ),
         SmallText(
           text: text,

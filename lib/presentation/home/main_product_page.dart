@@ -78,6 +78,7 @@ class _MainProductPageState extends State<MainProductPage> {
         Expanded(
           child: SingleChildScrollView(
             child: ProductPageBody(),
+            
           ),
         ),
       ],

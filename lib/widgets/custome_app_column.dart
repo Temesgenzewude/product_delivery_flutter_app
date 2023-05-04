@@ -20,6 +20,7 @@ class CustomAppColumn extends StatelessWidget {
         BigText(
           text: text,
           size: AppDimensions.font26,
+          
         ),
         SizedBox(height: AppDimensions.height10),
         Row(
@@ -30,20 +31,20 @@ class CustomAppColumn extends StatelessWidget {
                 (index) => Icon(
                   Icons.star,
                   color: AppColors.mainColor,
-                  size: AppDimensions.iconSize16,
+                  size: AppDimensions.iconSize10 +AppDimensions.iconSize10/5,
                 ),
               ),
             ),
             SizedBox(
-              width: AppDimensions.width10,
+              width: AppDimensions.width10/2,
             ),
             SmallText(text: "4.9"),
             SizedBox(
-              width: AppDimensions.width10,
+              width: AppDimensions.width10/2,
             ),
             SmallText(text: "1278"),
             SizedBox(
-              width: AppDimensions.width10,
+              width: AppDimensions.width10/2,
             ),
             SmallText(text: "comments"),
           ],

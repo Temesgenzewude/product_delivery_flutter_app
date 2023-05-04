@@ -134,6 +134,7 @@ class RecommendedProductDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar:
+      
           GetBuilder<PopularProductController>(builder: (popularProduct) {
         return Column(mainAxisSize: MainAxisSize.min, children: [
           Container(

@@ -16,7 +16,8 @@ class UserController extends GetxController implements GetxService {
 
   late UserModel _userModel;
 
-  UserModel get useModel => _userModel;
+  UserModel get userModel => _userModel;
+
 
   bool get isLoading => _isLoading;
 

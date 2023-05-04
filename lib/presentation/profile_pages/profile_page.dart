@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/auth/auth_controller.dart';
+import 'package:food_delivery/controllers/location/location_controller.dart';
 import 'package:food_delivery/controllers/user/user_controller.dart';
 import 'package:food_delivery/presentation/base/custom_loader.dart';
 import 'package:food_delivery/presentation/base/show_custom_snackbar.dart';
@@ -68,7 +69,7 @@ class ProfilePage extends StatelessWidget {
                                       size: AppDimensions.height10 * 5,
                                     ),
                                     bigText: BigText(
-                                        text: _userController.useModel.name),
+                                        text: _userController.userModel.name),
                                   ),
                                   SizedBox(
                                     height: AppDimensions.height20,
@@ -83,7 +84,7 @@ class ProfilePage extends StatelessWidget {
                                       size: AppDimensions.height10 * 5,
                                     ),
                                     bigText: BigText(
-                                      text: _userController.useModel.phone,
+                                      text: _userController.userModel.phone,
                                     ),
                                   ),
                                   SizedBox(
@@ -99,26 +100,59 @@ class ProfilePage extends StatelessWidget {
                                       size: AppDimensions.height10 * 5,
                                     ),
                                     bigText: BigText(
-                                      text: _userController.useModel.email,
+                                      text: _userController.userModel.email,
                                     ),
                                   ),
                                   SizedBox(
                                     height: AppDimensions.height20,
                                   ),
                                   // address
-                                  ProfileWidget(
-                                    appIcon: AppIcon(
-                                      icon: Icons.location_on,
-                                      backgroundColor: AppColors.yellowColor,
-                                      iconColor: Colors.white,
-                                      iconSize: AppDimensions.height25,
-                                      size: AppDimensions.height10 * 5,
-                                    ),
-                                    bigText: BigText(
-                                      text:
-                                          "New York City 21st Street, New York,",
-                                    ),
-                                  ),
+                                  GetBuilder<LocationController>(
+                                      builder: (_locationController) {
+                                    if (_isUserLoggedIn &&
+                                        _locationController
+                                            .addressList.isEmpty) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: ProfileWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize: AppDimensions.height25,
+                                            size: AppDimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(
+                                            text: "Fill Your Address",
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Get.offNamed(
+                                              RouteHelper.getAddressPage());
+                                        },
+                                        child: ProfileWidget(
+                                          appIcon: AppIcon(
+                                            icon: Icons.location_on,
+                                            backgroundColor:
+                                                AppColors.yellowColor,
+                                            iconColor: Colors.white,
+                                            iconSize: AppDimensions.height25,
+                                            size: AppDimensions.height10 * 5,
+                                          ),
+                                          bigText: BigText(
+                                            text: "Your Address",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }),
                                   SizedBox(
                                     height: AppDimensions.height20,
                                   ),
@@ -148,6 +182,8 @@ class ProfilePage extends StatelessWidget {
                                             .clearFromCart();
                                         Get.find<CartController>()
                                             .clearCartHistoryList();
+                                        Get.find<LocationController>()
+                                            .clearAddressList();
                                         Get.offNamed(
                                             RouteHelper.getSignInPage());
                                       } else {
