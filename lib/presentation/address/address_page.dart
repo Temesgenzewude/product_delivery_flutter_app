@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/address/address_model.dart';
+import 'package:food_delivery/presentation/address/pick_address_map_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/widgets/app_icon.dart';
 import 'package:food_delivery/widgets/app_textfield_widget.dart';
@@ -59,6 +60,11 @@ class _AddressPageState extends State<AddressPage> {
       Get.find<UserController>().getUserInfo();
     }
     if (Get.find<LocationController>().addressList.isNotEmpty) {
+      if (Get.find<LocationController>().getUserAddressFromLocalStorage() ==
+          "") {
+        Get.find<LocationController>()
+            .saveUserAddress(Get.find<LocationController>().addressList.last);
+      }
       Get.find<LocationController>().getUserAddress();
       _cameraPosition = CameraPosition(
           target: LatLng(
@@ -123,6 +129,16 @@ class _AddressPageState extends State<AddressPage> {
                       ),
                       child: Stack(children: [
                         GoogleMap(
+                          onTap: (latlng) {
+                            Get.toNamed(RouteHelper.getPickAddressMapPage(),
+                                arguments: PickAddressMapPage(
+                                  fromAddress: true,
+
+                                  fromSignup: false,
+                                  googleMapController:
+                                      _locationController.mapController,
+                                ));
+                          },
                           initialCameraPosition: CameraPosition(
                               target: _initialPosition, zoom: 16),
                           zoomControlsEnabled: false,
@@ -275,9 +291,8 @@ class _AddressPageState extends State<AddressPage> {
                       .addUserAddress(addressModel)
                       .then((response) {
                     if (response.isSuccess) {
-                       Get.snackbar("Address", "Saved Successfully!");
+                      Get.snackbar("Address", "Saved Successfully!");
                       Get.toNamed(RouteHelper.getInitial());
-                     
                     } else {
                       Get.snackbar("Address", "Couldn't Saved Address!");
                     }

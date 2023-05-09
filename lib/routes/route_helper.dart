@@ -1,5 +1,6 @@
 import 'package:food_delivery/presentation/account/account_page.dart';
 import 'package:food_delivery/presentation/address/address_page.dart';
+import 'package:food_delivery/presentation/address/pick_address_map_page.dart';
 import 'package:food_delivery/presentation/auth/signup_page.dart';
 import 'package:food_delivery/presentation/auth/singin_page.dart';
 import 'package:food_delivery/presentation/cart/cart_detail_page.dart';
@@ -28,6 +29,7 @@ class RouteHelper {
   static const String profilePage = '/profile';
   static const String addressPage = '/address-page';
 
+  static const String pickAddressMapPage = '/pick-address';
   static const String cartHistoryPage = '/cart-history-page';
 
   static getLandingPage() => '$landingPage';
@@ -46,6 +48,7 @@ class RouteHelper {
   static String getCartPage() => '$cartPage';
   static String getProfilePage() => '$profilePage';
   static String getAddressPage() => '$addressPage';
+  static String getPickAddressMapPage() => '$pickAddressMapPage';
 
   static String getCartHistoryPage() => '$cartHistoryPage';
 
@@ -103,7 +106,14 @@ class RouteHelper {
         page: () {
           return AddressPage();
         },
-        transition: Transition.fade), 
+        transition: Transition.fade),
+    GetPage(
+        name: pickAddressMapPage,
+        page: () {
+          PickAddressMapPage _pickAddressMapPage = Get.arguments;
+          return _pickAddressMapPage;  
+        },
+        transition: Transition.fade),
     GetPage(
         name: cartHistoryPage,
         page: () {

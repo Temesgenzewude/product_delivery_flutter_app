@@ -43,12 +43,35 @@ class LocationController extends GetxController implements GetxService {
   Placemark get placemark => _placemark;
   Placemark get pickPlacemark => _pickPlacemark;
 
+  /*
+   For Service zone
+   */
+  bool _serviceZonePageIsLoading = false;
+  bool get serviceZonePageIsLoading => _serviceZonePageIsLoading;
+  /*
+  whether the user is in service zone or not
+  */
+  bool _inZone = false;
+  bool get inZone => _inZone;
+  /*
+  for showing and hiding the button as the map loads
+  */
+  bool _buttonDisabled = true;
+  bool get buttonDisabled => _buttonDisabled;
+
   Map get getAddress => _getAddress;
 
   late GoogleMapController _mapController;
   GoogleMapController get mapController => _mapController;
   bool _updateAddressData = true;
   bool _changeAddressData = true;
+
+  Future<void> getCurrentLocation(bool fromAddressPage,
+      {required GoogleMapController mapController,
+      LatLng? defaultLatLng,
+      bool notify = true}) async {
+    _isLoading = true;
+  }
 
   void setMapController(GoogleMapController mapController) {
     _mapController = mapController;
@@ -83,6 +106,17 @@ class LocationController extends GetxController implements GetxService {
               speedAccuracy: 1);
         }
 
+        ResponseModel _responseModel = await getZone(
+            cameraPosition.target.latitude.toString(),
+            cameraPosition.target.longitude.toString(),
+            false);
+
+        /*
+            If button value is false, we are in the service area
+            */
+
+        _buttonDisabled = !_responseModel.isSuccess;
+
         if (_changeAddressData) {
           String _address = await getAddressFromGeocode(LatLng(
               cameraPosition.target.latitude, cameraPosition.target.longitude));
@@ -94,6 +128,10 @@ class LocationController extends GetxController implements GetxService {
       } catch (error) {
         print(error.toString());
       }
+      _isLoading = false;
+      update();
+    } else {
+      _updateAddressData = true;
     }
   }
 
@@ -189,5 +227,47 @@ class LocationController extends GetxController implements GetxService {
     _allAddressList = [];
     _addressList = [];
     update();
+  }
+
+  String getUserAddressFromLocalStorage() {
+    return locationRepo.getUserAddress();
+  }
+
+  void setAddAddressData() {
+    _position = _pickPosition;
+    _placemark = _pickPlacemark;
+    _updateAddressData = false;
+    update();
+  }
+
+  Future<ResponseModel> getZone(
+      String lat, String lng, bool markerLoading) async {
+    late ResponseModel _responseModel;
+    if (markerLoading) {
+      _isLoading = true;
+    } else {
+      _serviceZonePageIsLoading = true;
+    }
+    update();
+
+    Response _response = await locationRepo.getZone(lat, lng);
+
+    if (_response.statusCode == 200) {
+      _inZone = true;
+      _responseModel =
+          ResponseModel(true, _response.body['zone_id'].toString());
+    } else {
+      _inZone = false;
+      _responseModel = ResponseModel(false, _response.statusText!);
+    }
+     if (markerLoading) {
+      _isLoading =false;
+    } else {
+      _serviceZonePageIsLoading = false;
+    }
+
+    //print(_response.statusCode);
+
+    return _responseModel; 
   }
 }

@@ -5,6 +5,7 @@ import 'package:food_delivery/controllers/recommended_product/recommended_produc
 
 
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 
 import 'dependency/dependencies.dart' as dependency;
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
             title: 'Product Delivery App',
             initialRoute: RouteHelper.getLandingPage(),
             getPages: RouteHelper.routes,
+
+            theme: ThemeData(primaryColor: AppColors.mainColor, fontFamily: "Lato"),
             
           );
         },

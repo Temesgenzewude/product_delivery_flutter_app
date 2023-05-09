@@ -23,7 +23,10 @@ class AppConstants {
 
 
 
+
   static const String GEOCODE_END_POINT = "/config/geocode-api";
+    static const String ZONE_END_POINT = "/config/get-zone-id";
+
 
   static const String CART_LIST = "cart-list";
 
