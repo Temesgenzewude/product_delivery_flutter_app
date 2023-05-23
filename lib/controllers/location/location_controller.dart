@@ -1,6 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:food_delivery/data/api/api_checker.dart';
 import 'package:food_delivery/models/address/address_model.dart';
 import 'package:food_delivery/models/response/response_model.dart';
 import 'package:geocoding/geocoding.dart';
@@ -9,6 +12,7 @@ import 'package:get/get.dart';
 
 import 'package:food_delivery/data/repository/location/location_repo.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/places.dart';
 
 class LocationController extends GetxController implements GetxService {
   final LocationRepo locationRepo;
@@ -66,11 +70,29 @@ class LocationController extends GetxController implements GetxService {
   bool _updateAddressData = true;
   bool _changeAddressData = true;
 
+  /*
+  Save the google map suggestions for Address 
+  */
+
+  List<Prediction> _predictionList = [];
+
   Future<void> getCurrentLocation(bool fromAddressPage,
       {required GoogleMapController mapController,
       LatLng? defaultLatLng,
       bool notify = true}) async {
     _isLoading = true;
+    if (notify) {
+      update();
+    }
+    AddressModel _addressModel;
+    late Position _myPosition;
+    Position _test;
+    // Position newLocalData= await Geolocator.getCurrentPosition()
+    // _myPosition=newLocalData;
+    Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+        .then((Position position) async {
+      _myPosition = position;
+    });
   }
 
   void setMapController(GoogleMapController mapController) {
@@ -124,9 +146,13 @@ class LocationController extends GetxController implements GetxService {
           fromAddressPage
               ? _placemark = Placemark(name: _address)
               : _pickPlacemark = Placemark(name: _address);
+        } else {
+          _changeAddressData = true;
         }
       } catch (error) {
-        print(error.toString());
+        if (kDebugMode) {
+          print(error.toString());
+        }
       }
       _isLoading = false;
       update();
@@ -141,18 +167,30 @@ class LocationController extends GetxController implements GetxService {
     Response response = await locationRepo.getAddressFromGeocode(latLng);
 
     if (response.statusCode == 200) {
-      print("Successfully got address");
+      if (kDebugMode) {
+        print("Successfully got address");
+        print(response.body);
+      }
+
       if (response.body['status'] != "REQUEST_DENIED") {
         _address = response.body['results'][0]['formatted_address'].toString();
       }
 
-      print("printing address $_address");
+      if (kDebugMode) {
+        print("printing address $_address");
+      }
     } else {
-      print("Error While getting address from google api");
-      print(response.body);
+      if (kDebugMode) {
+        print("Error While getting address from google api");
+      }
+      if (kDebugMode) {
+        print(response.body);
+      }
     }
 
-    print("printing address $_address");
+    if (kDebugMode) {
+      print("printing address $_address");
+    }
 
     update();
     return _address;
@@ -167,7 +205,9 @@ class LocationController extends GetxController implements GetxService {
       _addressModel =
           AddressModel.fromJson(jsonDecode(locationRepo.getUserAddress()));
     } catch (error) {
-      print(error);
+      if (kDebugMode) {
+        print(error);
+      }
     }
 
     return _addressModel;
@@ -192,7 +232,9 @@ class LocationController extends GetxController implements GetxService {
       responseModel = ResponseModel(true, message);
       await saveUserAddress(addressModel);
     } else {
-      print("Couldn't save the user address");
+      if (kDebugMode) {
+        print("Couldn't save the user address");
+      }
       responseModel = ResponseModel(false, response.statusText!);
     }
     update();
@@ -260,14 +302,70 @@ class LocationController extends GetxController implements GetxService {
       _inZone = false;
       _responseModel = ResponseModel(false, _response.statusText!);
     }
-     if (markerLoading) {
-      _isLoading =false;
+    if (markerLoading) {
+      _isLoading = false;
     } else {
       _serviceZonePageIsLoading = false;
     }
 
     //print(_response.statusCode);
 
-    return _responseModel; 
+    return _responseModel;
+  }
+
+  Future<List<Prediction>> searchLocation(
+      BuildContext context, String text) async {
+    if (text.isNotEmpty) {
+      Response _response = await locationRepo.searchLocation(text);
+
+      if (_response.statusCode == 200 && _response.body['status'] == "OK") {
+        _predictionList = [];
+        _response.body['predictions'].forEach((prediction) {
+          _predictionList.add(Prediction.fromJson(prediction));
+        });
+      } else {
+        ApiChecker.checkApi(_response);
+      }
+    }
+
+    return _predictionList;
+  }
+
+  setLocation(
+      String placeID, String address, GoogleMapController mapController) async {
+    _isLoading = true;
+    update();
+    PlacesDetailsResponse placeDetail;
+
+    Response response = await locationRepo.setLocation(placeID);
+
+    placeDetail = PlacesDetailsResponse.fromJson(response.body);
+
+    _pickPosition = Position(
+        longitude: placeDetail.result.geometry!.location.lng,
+        latitude: placeDetail.result.geometry!.location.lat,
+        timestamp: DateTime.now(),
+        accuracy: 1,
+        altitude: 1,
+        heading: 1,
+        speed: 1,
+        speedAccuracy: 1);
+
+    _pickPlacemark = Placemark(name: address);
+    _changeAddressData = false;
+    if (mapController != null) {
+      mapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+              target: LatLng(
+                placeDetail.result.geometry!.location.lat,
+                placeDetail.result.geometry!.location.lng,
+              ),
+              zoom: 16),
+        ),
+      );
+    }
+    _isLoading = false;
+    update();
   }
 }
