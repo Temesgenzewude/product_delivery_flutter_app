@@ -14,6 +14,8 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils/api_end_points.dart';
+
 class CartHistoryPage extends StatelessWidget {
   const CartHistoryPage({super.key});
 
@@ -135,14 +137,14 @@ class CartHistoryPage extends StatelessWidget {
                                                                   2),
                                                       image: DecorationImage(
                                                         fit: BoxFit.cover,
-                                                        image: AssetImage(
-                                                            "assets/images/img3.jpg"),
-                                                        // image: NetworkImage(
-                                                        //   AppConstants.BASE_URL +
-                                                        //       AppConstants.UPLOAD_URL +
-                                                        //       getCartHistoryList[listCounter - 1]
-                                                        //           .img!,
-                                                        // ),
+                                                        // image: AssetImage(
+                                                        //     "assets/images/img3.jpg"),
+                                                        image: NetworkImage(
+                                                          AppConstants.BASE_URL_FOR_IMAGES +
+                                                              AppConstants.UPLOAD_URL +
+                                                              getCartHistoryList[listCounter - 1]
+                                                                  .img!,
+                                                        ),
                                                       ),
                                                     ),
                                                   )

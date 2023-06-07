@@ -10,6 +10,8 @@ import 'package:food_delivery/widgets/big_text.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
+import '../../utils/api_end_points.dart';
+
 class RecommendedProductDetail extends StatelessWidget {
   final int pageId;
   final String pageName;
@@ -41,7 +43,6 @@ class RecommendedProductDetail extends StatelessWidget {
                         Get.toNamed(RouteHelper.getCartPage());
                       } else if (pageName.trim() == "home") {
                         Get.toNamed(RouteHelper.getInitial());
-                        
                       }
                     },
                     child: AppIcon(icon: Icons.clear)),
@@ -110,11 +111,15 @@ class RecommendedProductDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: AppDimensions.height10 * 30,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/img4.jpg",
+              background: Image(
+                image: NetworkImage(AppConstants.BASE_URL_FOR_IMAGES +
+                    AppConstants.UPLOAD_URL +
+                    product.img),
                 fit: BoxFit.cover,
                 width: double.maxFinite,
               ),
+              // background: Image.asset(
+              //   "assets/images/img4.jpg",
             ),
           ),
           SliverToBoxAdapter(
@@ -134,7 +139,6 @@ class RecommendedProductDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar:
-      
           GetBuilder<PopularProductController>(builder: (popularProduct) {
         return Column(mainAxisSize: MainAxisSize.min, children: [
           Container(

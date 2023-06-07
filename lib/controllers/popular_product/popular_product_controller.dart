@@ -31,7 +31,7 @@ class PopularProductController extends GetxController {
     Response response = await popularProductRepo.getPopularProductList();
 
     if (response.statusCode == 200) {
-      // print("Successfully loaded products");
+      print("Successfully loaded products");
 
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
@@ -39,7 +39,7 @@ class PopularProductController extends GetxController {
 
       update();
     } else {
-      // print("Error loading products");
+      print("Error loading products");
     }
   }
 

@@ -12,6 +12,8 @@ import 'package:food_delivery/widgets/custome_app_column.dart';
 import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
+import '../../utils/api_end_points.dart';
+
 class PopularProductDetail extends StatelessWidget {
   final int pageId;
   final String pageName;
@@ -39,7 +41,10 @@ class PopularProductDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/images/img7.jpg"),
+                      // image: AssetImage("assets/images/img7.jpg"),
+                      image: NetworkImage(AppConstants.BASE_URL_FOR_IMAGES +
+                          AppConstants.UPLOAD_URL +
+                          product.img),
                     ),
                   ),
                 )),

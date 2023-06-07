@@ -13,6 +13,7 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/recommended_product/recommended_product_controller.dart';
+import '../../utils/api_end_points.dart';
 
 class CartDetailPage extends StatelessWidget {
   const CartDetailPage({super.key});
@@ -124,8 +125,13 @@ class CartDetailPage extends StatelessWidget {
                                               AppDimensions.radius20),
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
-                                            image: AssetImage(
-                                                "assets/images/img4.jpg"),
+                                            image: NetworkImage(AppConstants
+                                                    .BASE_URL_FOR_IMAGES +
+                                                AppConstants.UPLOAD_URL +
+                                                _cartList[index].img!),
+
+                                            // image: AssetImage(
+                                            //     "assets/images/img4.jpg"),
                                           ),
                                         ),
                                       ),

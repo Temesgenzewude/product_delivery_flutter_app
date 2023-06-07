@@ -1,7 +1,14 @@
 class AppConstants {
   static const String APP_NAME = "DBFood";
   static const int APP_VERSION = 1;
-  static const String BASE_URL = "http://localhost:8000/api/v1";
+  // for android emulator only
+  static const String BASE_URL = 'http://10.0.2.2:8000/api/v1';
+    static const String BASE_URL_FOR_IMAGES = 'http://10.0.2.2:8000';
+
+  
+
+  // for iOS emulator and physical device
+  //static const String BASE_URL = "http://127.0.0.1:8000/api/v1";
 
   static const String POPULAR_PRODUCT_END_POINT = "/products/popular";
 
@@ -25,10 +32,9 @@ class AppConstants {
   static const String ZONE_END_POINT = "/config/get-zone-id";
   static const String SEARCH_LOCATION_END_POINT =
       "/config/place-api-autocomplete";
-  static const String PLACE_DETAILS_END_POINT = "/config/place-api-details"; 
+  static const String PLACE_DETAILS_END_POINT = "/config/place-api-details";
 
   static const String CART_LIST = "cart-list";
-  
 
   static const String CART_HISTORY_LIST = "cart-history-list";
 

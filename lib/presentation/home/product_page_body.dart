@@ -41,14 +41,11 @@ class _ProductPageBodyState extends State<ProductPageBody> {
   void dispose() {
     pageController.dispose();
     super.dispose();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-
-      
       children: [
         //slider
         GetBuilder<PopularProductController>(builder: (popularProducts) {
@@ -142,8 +139,8 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                             //show product image
 
                             Container(
-                              height: AppDimensions.height25*4,
-                              width: AppDimensions.height25*4,
+                              height: AppDimensions.height25 * 4,
+                              width: AppDimensions.height25 * 4,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
                                   AppDimensions.radius15,
@@ -151,11 +148,11 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                                 color: Colors.white38,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage("assets/images/img3.jpg"),
-                                  // image: NetworkImage(AppConstants.BASE_URL +
-                                  //     AppConstants.UPLOAD_URL +
-                                  //     recommendedProducts
-                                  //         .recommendedProductList[index].img!),
+                                  // image: AssetImage("assets/images/img3.jpg"),
+                                  image: NetworkImage(AppConstants.BASE_URL_FOR_IMAGES +
+                                      AppConstants.UPLOAD_URL +
+                                      recommendedProducts
+                                          .recommendedProductList[index].img!),
                                 ),
                               ),
                             ),
@@ -201,7 +198,6 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           IconAndText(
-
                                             icon: Icons.circle_sharp,
                                             text: "Normal",
                                             iconColor: AppColors.iconColor1,
@@ -269,7 +265,6 @@ class _ProductPageBodyState extends State<ProductPageBody> {
     return Transform(
       transform: matrix,
       child: Stack(
-        
         children: [
           GestureDetector(
             onTap: () {
@@ -284,12 +279,12 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                 borderRadius: BorderRadius.circular(AppDimensions.radius30),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    "assets/images/img6.jpg",
-                  ),
-                  //  image: NetworkImage(
-                  //  AppConstants.BASE_URL + AppConstants.UPLOAD_URL+ popularProduct.img!
+                  // image: AssetImage(
+                  //   "assets/images/img6.jpg",
                   // ),
+                  image: NetworkImage(AppConstants.BASE_URL_FOR_IMAGES +
+                      AppConstants.UPLOAD_URL +
+                      popularProduct.img!),
                 ),
               ),
             ),
