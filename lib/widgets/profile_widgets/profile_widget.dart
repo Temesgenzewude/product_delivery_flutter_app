@@ -1,9 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
+import '../../utils/dimensions.dart';
+import '../app_icon.dart';
+import '../big_text.dart';
 
 class ProfileWidget extends StatelessWidget {
   final AppIcon appIcon;

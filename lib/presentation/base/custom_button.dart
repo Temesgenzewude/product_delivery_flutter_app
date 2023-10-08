@@ -1,10 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/dimensions.dart';
+
+import '../../utils/dimensions.dart';
 
 class CustomButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  
+
   final String buttonText;
   final bool transparent;
   final EdgeInsets? margin;
@@ -49,7 +49,6 @@ class CustomButton extends StatelessWidget {
         height: height ?? AppDimensions.height25 * 2,
         child: TextButton(
           onPressed: onPressed,
-
           style: _flatButton,
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             icon != null

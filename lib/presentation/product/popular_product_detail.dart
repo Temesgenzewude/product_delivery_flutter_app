@@ -1,18 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/cart/cart_controller.dart';
-import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/custome_app_column.dart';
-import 'package:food_delivery/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/cart/cart_controller.dart';
+import '../../controllers/popular_product/popular_product_controller.dart';
+import '../../routes/route_helper.dart';
 import '../../utils/api_end_points.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/custome_app_column.dart';
+import '../../widgets/expandable_text_widget.dart';
 
 class PopularProductDetail extends StatelessWidget {
   final int pageId;

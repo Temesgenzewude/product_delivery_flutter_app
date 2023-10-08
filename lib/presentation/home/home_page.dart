@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/presentation/auth/signup_page.dart';
-import 'package:food_delivery/presentation/cart/cart_history_page.dart';
 
-import 'package:food_delivery/presentation/home/main_product_page.dart';
-import 'package:food_delivery/presentation/profile_pages/profile_page.dart';
-import 'package:food_delivery/utils/colors.dart';
+import '../../utils/colors.dart';
+import '../cart/cart_history_page.dart';
+import '../profile_pages/profile_page.dart';
+import 'main_product_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,12 +15,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
-    MainProductPage(),
-    Container(
-      child: Center(child: Text("Cart History Page")),
-    ),
-    CartHistoryPage(),
-    ProfilePage(),
+    const MainProductPage(),
+    const Center(child: Text("Cart History Page")),
+    const CartHistoryPage(),
+    const ProfilePage(),
   ];
 
   void handleBottomNaveTap(int index) {
@@ -44,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         selectedFontSize: 0.0,
         unselectedFontSize: 0.0,
         onTap: handleBottomNaveTap,
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home_outlined,

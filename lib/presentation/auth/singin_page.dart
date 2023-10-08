@@ -1,14 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/presentation/base/custom_loader.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/app_textfield_widget.dart';
-import 'package:food_delivery/widgets/big_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/auth/auth_controller.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_textfield_widget.dart';
+import '../../widgets/big_text.dart';
+import '../base/custom_loader.dart';
 import '../base/show_custom_snackbar.dart';
 
 class SignInPage extends StatelessWidget {

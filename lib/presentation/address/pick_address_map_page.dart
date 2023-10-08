@@ -1,15 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/location/location_controller.dart';
-import 'package:food_delivery/presentation/base/custom_button.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/address/search_location_dialogue_page.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../controllers/location/location_controller.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/address/search_location_dialogue_page.dart';
+import '../base/custom_button.dart';
 
 class PickAddressMapPage extends StatefulWidget {
   final bool fromSignup;
@@ -71,12 +69,11 @@ class _PickAddressMapPageState extends State<PickAddressMapPage> {
                           .updatePosition(_cameraPosition, false);
                     },
                     onMapCreated: (GoogleMapController mapController) {
-                      _mapController=mapController;
-                      if(!widget.fromAddress){
+                      _mapController = mapController;
+                      if (!widget.fromAddress) {
                         print("Pick from web");
                         //Get.find<LocationController>().getCurrentLocation()
                       }
-                      
                     },
                   ),
                   Center(
@@ -87,7 +84,7 @@ class _PickAddressMapPageState extends State<PickAddressMapPage> {
                                   fontSize: AppDimensions.font20,
                                   fontWeight: FontWeight.bold))
                           : CircularProgressIndicator()),
-                 /*
+                  /*
                 showing and selecting address
                  */
                   Positioned(
@@ -95,10 +92,8 @@ class _PickAddressMapPageState extends State<PickAddressMapPage> {
                     left: AppDimensions.width20,
                     right: AppDimensions.width20,
                     child: InkWell(
-                      onTap: ()=> Get.dialog(LocationDialoguePage(mapController:  _mapController))
-                        
-                      ,
-
+                      onTap: () => Get.dialog(
+                          LocationDialoguePage(mapController: _mapController)),
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: AppDimensions.width10),

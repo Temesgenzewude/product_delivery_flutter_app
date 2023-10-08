@@ -1,9 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:food_delivery/models/user/user_model.dart';
 import 'package:get/get.dart';
 
-import 'package:food_delivery/data/repository/user/user_repo.dart';
-import 'package:food_delivery/models/response/response_model.dart';
+import '../../data/repository/user/user_repo.dart';
+import '../../models/response/response_model.dart';
+import '../../models/user/user_model.dart';
 
 class UserController extends GetxController implements GetxService {
   final UserRepo userRepo;

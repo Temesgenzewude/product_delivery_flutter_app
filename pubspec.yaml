@@ -37,15 +37,15 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   get: ^4.6.5
-  dots_indicator: ^2.1.0
+  dots_indicator: ^3.0.0
   shared_preferences: ^2.0.18
   intl: ^0.18.0
   google_maps_flutter: ^2.2.5
   geocoding: ^2.1.0
-  geolocator: ^9.0.2
+  geolocator: ^10.0.1
   permission_handler: ^10.2.0
   flutter_typeahead: ^4.3.1
-  google_maps_flutter_web: ^0.4.0+7
+  google_maps_flutter_web: ^0.5.4+2
   flutter_google_places: ^0.3.0
 
 dev_dependencies:

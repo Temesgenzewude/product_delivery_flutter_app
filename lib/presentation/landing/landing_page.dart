@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product/recommended_product_controller.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/popular_product/popular_product_controller.dart';
+import '../../controllers/recommended_product/recommended_product_controller.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/big_text.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -21,11 +22,9 @@ class _LandingScreenState extends State<LandingScreen>
   late AnimationController animationController;
 
   Future<void> _loadResources() async {
-    
     await Get.find<PopularProductController>().getPopularProductList();
     await Get.find<RecommendedProductController>().getRecommendedProductList();
   }
-  
 
   @override
   void initState() {

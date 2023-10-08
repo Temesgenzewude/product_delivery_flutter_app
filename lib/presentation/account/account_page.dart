@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/profile_widgets/profile_widget.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/big_text.dart';
+
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_icon.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/profile_widgets/profile_widget.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});

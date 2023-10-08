@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:food_delivery/models/auth/signup_body_model.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get_connect.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:food_delivery/data/api/api_client.dart';
+import '../../../models/auth/signup_body_model.dart';
+import '../../../utils/api_end_points.dart';
+import '../../api/api_client.dart';
 
 class AuthRepo {
   final ApiClient apiClient;

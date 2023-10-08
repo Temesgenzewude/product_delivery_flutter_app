@@ -1,6 +1,7 @@
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../utils/api_end_points.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;

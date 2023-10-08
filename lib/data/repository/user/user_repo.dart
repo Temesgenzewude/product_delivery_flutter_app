@@ -1,7 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/api_end_points.dart';
+import '../../api/api_client.dart';
 
 class UserRepo {
   final ApiClient apiClient;

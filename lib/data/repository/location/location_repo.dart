@@ -1,11 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:food_delivery/models/address/address_model.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get_connect.dart';
-import 'package:google_maps_flutter_platform_interface/src/types/location.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:food_delivery/data/api/api_client.dart';
+import '../../../models/address/address_model.dart';
+import '../../../utils/api_end_points.dart';
+import '../../api/api_client.dart';
 
 class LocationRepo {
   final ApiClient apiClient;
@@ -46,11 +45,13 @@ class LocationRepo {
         .getData('${AppConstants.ZONE_END_POINT}?lat=$lat&lng=$lng');
   }
 
-  Future<Response> searchLocation(String text)async{
-    return await apiClient.getData('${AppConstants.SEARCH_LOCATION_END_POINT}?search_text=$text');
+  Future<Response> searchLocation(String text) async {
+    return await apiClient
+        .getData('${AppConstants.SEARCH_LOCATION_END_POINT}?search_text=$text');
   }
 
-  Future<Response>setLocation(String placeID)async{
-    return await apiClient.getData('${AppConstants.PLACE_DETAILS_END_POINT}?placeid=$placeID');
+  Future<Response> setLocation(String placeID) async {
+    return await apiClient
+        .getData('${AppConstants.PLACE_DETAILS_END_POINT}?placeid=$placeID');
   }
 }

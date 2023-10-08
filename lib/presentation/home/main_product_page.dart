@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/presentation/home/product_page_body.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/popular_product/popular_product_controller.dart';
 import '../../controllers/recommended_product/recommended_product_controller.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/small_text.dart';
+import 'product_page_body.dart';
 
 class MainProductPage extends StatefulWidget {
   const MainProductPage({super.key});
@@ -26,62 +25,59 @@ class _MainProductPageState extends State<MainProductPage> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: _loadResources,
+        onRefresh: _loadResources,
         child: Column(
-      children: [
-        //header
+          children: [
+            //header
 
-        Container(
-          child: Container(
-            margin: EdgeInsets.only(
-                top: AppDimensions.height45, bottom: AppDimensions.height15),
-            padding: EdgeInsets.only(
-                left: AppDimensions.width20, right: AppDimensions.width20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BigText(text: "Ethiopia", color: AppColors.mainColor),
-                    Row(
-                      children: [
-                        SmallText(text: "Addis Ababa", color: Colors.black54),
-                        Icon(
-                          Icons.arrow_drop_down_rounded,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Center(
-                  child: Container(
-                    width: AppDimensions.height45,
-                    height: AppDimensions.height45,
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                      size: AppDimensions.iconSize24,
-                    ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.radius15,
-                        ),
-                        color: AppColors.mainColor),
+            Container(
+              margin: EdgeInsets.only(
+                  top: AppDimensions.height45, bottom: AppDimensions.height15),
+              padding: EdgeInsets.only(
+                  left: AppDimensions.width20, right: AppDimensions.width20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BigText(text: "Ethiopia", color: AppColors.mainColor),
+                      Row(
+                        children: [
+                          SmallText(text: "Addis Ababa", color: Colors.black54),
+                          const Icon(
+                            Icons.arrow_drop_down_rounded,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  Center(
+                    child: Container(
+                      width: AppDimensions.height45,
+                      height: AppDimensions.height45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            AppDimensions.radius15,
+                          ),
+                          color: AppColors.mainColor),
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                        size: AppDimensions.iconSize24,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-        //body
-        Expanded(
-          child: SingleChildScrollView(
-            child: ProductPageBody(),
-            
-          ),
-        ),
-      ],
-    ));
+            //body
+            const Expanded(
+              child: SingleChildScrollView(
+                child: ProductPageBody(),
+              ),
+            ),
+          ],
+        ));
   }
 }

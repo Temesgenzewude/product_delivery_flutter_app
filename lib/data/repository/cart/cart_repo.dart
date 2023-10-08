@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:food_delivery/models/cart/cart_model.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../models/cart/cart_model.dart';
+import '../../../utils/api_end_points.dart';
 
 class CartRepo extends GetxService {
   final SharedPreferences sharedPreferences;

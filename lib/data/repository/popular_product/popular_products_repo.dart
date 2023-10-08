@@ -1,6 +1,7 @@
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/api_end_points.dart';
+import '../../api/api_client.dart';
 
 class PopularProductRepo extends GetxService {
   final ApiClient apiClient;

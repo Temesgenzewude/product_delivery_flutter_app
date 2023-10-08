@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/icon_and_text.dart';
-import 'package:food_delivery/widgets/small_text.dart';
+
+import '../utils/colors.dart';
+import '../utils/dimensions.dart';
+import 'big_text.dart';
+import 'icon_and_text.dart';
+import 'small_text.dart';
 
 class CustomAppColumn extends StatelessWidget {
   final String text;

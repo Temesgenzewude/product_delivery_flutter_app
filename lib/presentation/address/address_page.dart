@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/address/address_model.dart';
-import 'package:food_delivery/presentation/address/pick_address_map_page.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/widgets/app_icon.dart';
-import 'package:food_delivery/widgets/app_textfield_widget.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:food_delivery/controllers/auth/auth_controller.dart';
-import 'package:food_delivery/controllers/location/location_controller.dart';
-import 'package:food_delivery/controllers/user/user_controller.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import '../../controllers/auth/auth_controller.dart';
+import '../../controllers/location/location_controller.dart';
+import '../../controllers/user/user_controller.dart';
+import '../../models/address/address_model.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/app_textfield_widget.dart';
+import '../../widgets/big_text.dart';
+import 'pick_address_map_page.dart';
 
 class AddressPage extends StatefulWidget {
   const AddressPage({super.key});

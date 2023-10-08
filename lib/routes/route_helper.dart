@@ -1,18 +1,16 @@
-import 'package:food_delivery/presentation/account/account_page.dart';
-import 'package:food_delivery/presentation/address/address_page.dart';
-import 'package:food_delivery/presentation/address/pick_address_map_page.dart';
-import 'package:food_delivery/presentation/auth/signup_page.dart';
-import 'package:food_delivery/presentation/auth/singin_page.dart';
-import 'package:food_delivery/presentation/cart/cart_detail_page.dart';
-import 'package:food_delivery/presentation/home/home_page.dart';
-import 'package:food_delivery/presentation/home/product_page_body.dart';
-import 'package:food_delivery/presentation/landing/landing_page.dart';
-import 'package:food_delivery/presentation/product/popular_product_detail.dart';
-import 'package:food_delivery/presentation/product/recommended_product_detail.dart';
-import 'package:food_delivery/presentation/home/main_product_page.dart';
 import 'package:get/get.dart';
 
+import '../presentation/account/account_page.dart';
+import '../presentation/address/address_page.dart';
+import '../presentation/address/pick_address_map_page.dart';
+import '../presentation/auth/signup_page.dart';
+import '../presentation/auth/singin_page.dart';
+import '../presentation/cart/cart_detail_page.dart';
 import '../presentation/cart/cart_history_page.dart';
+import '../presentation/home/home_page.dart';
+import '../presentation/landing/landing_page.dart';
+import '../presentation/product/popular_product_detail.dart';
+import '../presentation/product/recommended_product_detail.dart';
 
 class RouteHelper {
   static String landingPage = "/landing-page";

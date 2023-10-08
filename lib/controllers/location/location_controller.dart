@@ -1,18 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/data/api/api_checker.dart';
-import 'package:food_delivery/models/address/address_model.dart';
-import 'package:food_delivery/models/response/response_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-
-import 'package:food_delivery/data/repository/location/location_repo.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
+
+import '../../data/api/api_checker.dart';
+import '../../data/repository/location/location_repo.dart';
+import '../../models/address/address_model.dart';
+import '../../models/response/response_model.dart';
 
 class LocationController extends GetxController implements GetxService {
   final LocationRepo locationRepo;

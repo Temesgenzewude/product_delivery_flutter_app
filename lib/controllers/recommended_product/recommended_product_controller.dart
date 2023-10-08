@@ -1,6 +1,7 @@
-import 'package:food_delivery/data/repository/recommended_prodcut/recommended_product_repo.dart';
-import 'package:food_delivery/models/product/products_model.dart';
 import 'package:get/get.dart';
+
+import '../../data/repository/recommended_prodcut/recommended_product_repo.dart';
+import '../../models/product/products_model.dart';
 
 class RecommendedProductController extends GetxController {
   final RecommendedProductRepo recommendedProductRepo;

@@ -1,19 +1,20 @@
-import 'package:food_delivery/controllers/auth/auth_controller.dart';
-import 'package:food_delivery/controllers/cart/cart_controller.dart';
-import 'package:food_delivery/controllers/location/location_controller.dart';
-import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product/recommended_product_controller.dart';
-import 'package:food_delivery/controllers/user/user_controller.dart';
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/data/repository/auth/auth_repo.dart';
-import 'package:food_delivery/data/repository/cart/cart_repo.dart';
-import 'package:food_delivery/data/repository/location/location_repo.dart';
-import 'package:food_delivery/data/repository/popular_product/popular_products_repo.dart';
-import 'package:food_delivery/data/repository/recommended_prodcut/recommended_product_repo.dart';
-import 'package:food_delivery/data/repository/user/user_repo.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../controllers/auth/auth_controller.dart';
+import '../controllers/cart/cart_controller.dart';
+import '../controllers/location/location_controller.dart';
+import '../controllers/popular_product/popular_product_controller.dart';
+import '../controllers/recommended_product/recommended_product_controller.dart';
+import '../controllers/user/user_controller.dart';
+import '../data/api/api_client.dart';
+import '../data/repository/auth/auth_repo.dart';
+import '../data/repository/cart/cart_repo.dart';
+import '../data/repository/location/location_repo.dart';
+import '../data/repository/popular_product/popular_products_repo.dart';
+import '../data/repository/recommended_prodcut/recommended_product_repo.dart';
+import '../data/repository/user/user_repo.dart';
+import '../utils/api_end_points.dart';
 
 Future<void> init() async {
   //shared preferences

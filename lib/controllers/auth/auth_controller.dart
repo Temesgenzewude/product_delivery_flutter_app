@@ -1,9 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:food_delivery/models/auth/signup_body_model.dart';
-import 'package:food_delivery/models/response/response_model.dart';
 import 'package:get/get.dart';
 
-import 'package:food_delivery/data/repository/auth/auth_repo.dart';
+import '../../data/repository/auth/auth_repo.dart';
+import '../../models/auth/signup_body_model.dart';
+import '../../models/response/response_model.dart';
 
 class AuthController extends GetxController implements GetxService {
   final AuthRepo authRepo;
@@ -63,8 +62,7 @@ class AuthController extends GetxController implements GetxService {
     return authRepo.userLoggedIn();
   }
 
-  bool clearSharedData(){
+  bool clearSharedData() {
     return authRepo.clearSharedData();
   }
 }
-

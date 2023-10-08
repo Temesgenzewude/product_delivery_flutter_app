@@ -1,18 +1,18 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery/controllers/popular_product/popular_product_controller.dart';
-import 'package:food_delivery/controllers/recommended_product/recommended_product_controller.dart';
-import 'package:food_delivery/models/product/products_model.dart';
-import 'package:food_delivery/presentation/product/popular_product_detail.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:food_delivery/utils/colors.dart';
-import 'package:food_delivery/utils/api_end_points.dart';
-import 'package:food_delivery/utils/dimensions.dart';
-import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/widgets/custome_app_column.dart';
-import 'package:food_delivery/widgets/icon_and_text.dart';
-import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
+
+import '../../controllers/popular_product/popular_product_controller.dart';
+import '../../controllers/recommended_product/recommended_product_controller.dart';
+import '../../models/product/products_model.dart';
+import '../../routes/route_helper.dart';
+import '../../utils/api_end_points.dart';
+import '../../utils/colors.dart';
+import '../../utils/dimensions.dart';
+import '../../widgets/big_text.dart';
+import '../../widgets/custome_app_column.dart';
+import '../../widgets/icon_and_text.dart';
+import '../../widgets/small_text.dart';
 
 class ProductPageBody extends StatefulWidget {
   const ProductPageBody({super.key});
@@ -60,7 +60,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                             popularProducts.popularProductList[position]);
                       }),
                 )
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
         }),
@@ -69,7 +69,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
             dotsCount: popularProducts.popularProductList.isEmpty
                 ? 1
                 : popularProducts.popularProductList.length,
-            position: _currPageValue,
+            position: _currPageValue.toInt(),
             decorator: DotsDecorator(
               activeColor: AppColors.mainColor,
               size: const Size.square(9.0),
@@ -94,7 +94,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                 width: AppDimensions.width10,
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 3),
+                margin: const EdgeInsets.only(bottom: 3),
                 child: BigText(
                   text: ".",
                   color: Colors.black26,
@@ -104,7 +104,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                 width: AppDimensions.width10,
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 2),
+                margin: const EdgeInsets.only(bottom: 2),
                 child: SmallText(text: "Product Pairing"),
               ),
             ],
@@ -119,7 +119,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
               ?
               //List of product and images
               ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: recommendedProducts.recommendedProductList.length,
                   itemBuilder: (context, index) {
@@ -149,10 +149,12 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   // image: AssetImage("assets/images/img3.jpg"),
-                                  image: NetworkImage(AppConstants.BASE_URL_FOR_IMAGES +
-                                      AppConstants.UPLOAD_URL +
-                                      recommendedProducts
-                                          .recommendedProductList[index].img!),
+                                  image: NetworkImage(
+                                      AppConstants.BASE_URL_FOR_IMAGES +
+                                          AppConstants.UPLOAD_URL +
+                                          recommendedProducts
+                                              .recommendedProductList[index]
+                                              .img!),
                                 ),
                               ),
                             ),
@@ -193,7 +195,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                                       SizedBox(
                                         height: AppDimensions.height10,
                                       ),
-                                      Row(
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
@@ -224,7 +226,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
                       ),
                     );
                   })
-              : CircularProgressIndicator(
+              : const CircularProgressIndicator(
                   color: AppColors.mainColor,
                 );
         })
@@ -233,7 +235,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
   }
 
   Widget _buildPageItem(int index, ProductModel popularProduct) {
-    Matrix4 matrix = new Matrix4.identity();
+    Matrix4 matrix = Matrix4.identity();
 
     if (index == _currPageValue.floor()) {
       var currScale = 1 - ((_currPageValue - index) * (1 - _scaleFactor));
@@ -275,7 +277,9 @@ class _ProductPageBodyState extends State<ProductPageBody> {
               margin: EdgeInsets.only(
                   left: AppDimensions.width10, right: AppDimensions.width10),
               decoration: BoxDecoration(
-                color: index.isEven ? Color(0xFF69c5df) : Color(0xFF9294cc),
+                color: index.isEven
+                    ? const Color(0xFF69c5df)
+                    : const Color(0xFF9294cc),
                 borderRadius: BorderRadius.circular(AppDimensions.radius30),
                 image: DecorationImage(
                   fit: BoxFit.cover,
@@ -300,7 +304,7 @@ class _ProductPageBodyState extends State<ProductPageBody> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(AppDimensions.radius20),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 5.0,
                       color: Color(0xFFe8e8e8),
